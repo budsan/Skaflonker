@@ -34,16 +34,19 @@ void Ingame::draw()
 	Guy::Screen &screen = Guy::Environment::instance().screen();
 	screen.fillWithColor(Guy::rgba(0.75f, 0.75f, 0.75f, 1));
 
-	camera.setZoom(0.5);
-
 	math::vec2d p1ProjPos = player.projectedPosition();
 	math::vec2d p2ProjPos = player2.projectedPosition();
 
 	double dist = (p2ProjPos - p1ProjPos).module();
 	math::vec2d cent = (p1ProjPos + p2ProjPos)/2;
 
-	cameraPos = cameraPos * 0.95 + cent * 0.05;
+	cameraPos = cameraPos * 0.9 + cent * 0.1;
 	camera.setPos(cameraPos + math::vec2d(0, 300));
+
+	if (dist < 1200) dist = 1200;
+	float currentZoom = 600/dist;
+	zoom = zoom * 0.75 + currentZoom * 0.25;
+	camera.setZoom(zoom);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(camera.projectionMatrix().v);

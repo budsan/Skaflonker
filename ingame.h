@@ -18,6 +18,7 @@ public:
 private:
 	Guy::Camera2D camera;
 	math::vec2d cameraPos;
+	float zoom;
 
 	Player player;
 	Player player2;
