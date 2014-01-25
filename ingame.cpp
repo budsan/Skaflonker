@@ -29,7 +29,7 @@ void Ingame::load()
 	player.setLibrary(dinoazul);
 	player.playTrack("idle");
 
-	std::shared_ptr<Player::Library> dinorojo = Player::loadDirectory("data/animations/dinorojo");
+	std::shared_ptr<Player::Library> dinorojo = Player::loadDirectory("data/animations/huevoverd");
 	player2.setLibrary(dinorojo);
 	player2.playTrack("idle");
 

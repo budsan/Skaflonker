@@ -1,0 +1,54 @@
+{
+    "fps": 60,
+    "frameCount": 15,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevosostenirblau.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -120,
+                    "y": -337
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevothrowblau.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -122,
+                    "y": -338
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 5
+        }
+    ]
+}

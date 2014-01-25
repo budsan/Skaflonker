@@ -1,0 +1,102 @@
+{
+    "fps": 60,
+    "frameCount": 25,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevoup1verd.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": 0,
+                    "y": 0
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevoterraverd.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": 0,
+                    "y": 0
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 2
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevoup1verd.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": 0,
+                    "y": 0
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 13
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevoup2verd.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": 0,
+                    "y": 0
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 20
+        }
+    ]
+}

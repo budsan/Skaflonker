@@ -1,0 +1,54 @@
+{
+    "fps": 60,
+    "frameCount": 15,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevogancho2verd.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -104,
+                    "y": -314
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevogancho3verd.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -104.27068961635378,
+                    "y": -313.5676724040884
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 7
+        }
+    ]
+}
