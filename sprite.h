@@ -23,6 +23,7 @@ public:
 	math::vec2d scale() { return m_scale; }
 	double rotation()  { return m_rotate; }
 
+	const math::vec3d &position() const { return m_pos;}
 	math::vec3d &position() { return m_pos;}
 private:
 	static double s_globalUnitsPerPixel;

@@ -4,6 +4,7 @@
 
 Ingame::Ingame() : player(0), player2(1)
 {
+	m_shadowSprite.setFileName("shadow.png");
 }
 
 void Ingame::update(double deltaTime)
@@ -35,10 +36,8 @@ void Ingame::draw()
 
 	camera.setZoom(0.5);
 
-	math::vec3d& p1pos = player.position();
-	math::vec3d& p2pos = player2.position();
-	math::vec2d p1ProjPos(p1pos.x, p1pos.y + (p1pos.z/2));
-	math::vec2d p2ProjPos(p2pos.x, p2pos.y + (p2pos.z/2));
+	math::vec2d p1ProjPos = player.projectedPosition();
+	math::vec2d p2ProjPos = player2.projectedPosition();
 
 	double dist = (p2ProjPos - p1ProjPos).module();
 	math::vec2d cent = (p1ProjPos + p2ProjPos)/2;
@@ -51,6 +50,12 @@ void Ingame::draw()
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(camera.viewMatrix().v);
+
+	m_shadowSprite.setPosition(player.floorPosition());
+	m_shadowSprite.draw();
+
+	m_shadowSprite.setPosition(player2.floorPosition());
+	m_shadowSprite.draw();
 
 	if (player.position().z > player2.position().z )
 	{

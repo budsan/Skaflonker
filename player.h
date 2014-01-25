@@ -9,6 +9,8 @@
 #include "math/bbox.h"
 #include "sprite.h"
 
+class StandardSprite;
+
 class Player : public Sprite
 {
 public:
@@ -70,6 +72,9 @@ public:
 	static std::shared_ptr<Library> loadDirectory(const std::string &path);
 
 	void setFacingDirection(HorizontalDirection direction);
+
+	math::vec2d projectedPosition() const;
+	math::vec2d floorPosition() const;
 
 private:
 	static bool loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library>& lib);

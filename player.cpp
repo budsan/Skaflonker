@@ -11,6 +11,7 @@
 
 #include "graphics/texturemanager.h"
 #include "debug.h"
+#include "standardsprite.h"
 
 Player::Player(std::size_t playerID)
 	: Sprite(),
@@ -20,7 +21,6 @@ Player::Player(std::size_t playerID)
 	  m_trackFrame(0),
 	  m_playerID(playerID)
 {
-
 }
 
 void Player::update(double /*delta*/)
@@ -123,6 +123,16 @@ void Player::setFacingDirection(Player::HorizontalDirection direction)
 	}
 
 	setScale(math::vec2d(1, 1));
+}
+
+math::vec2d Player::projectedPosition() const
+{
+	return math::vec2d(position().x, position().y + position().z / 2);
+}
+
+math::vec2d Player::floorPosition() const
+{
+	return math::vec2d(position().x, position().z / 2);
 }
 
 bool Player::loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library> &lib)

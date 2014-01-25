@@ -2,6 +2,7 @@
 
 #include "player.h"
 #include "graphics/camera2d.h"
+#include "standardsprite.h"
 
 class Ingame
 {
@@ -20,4 +21,5 @@ private:
 
 	Player player;
 	Player player2;
+	StandardSprite m_shadowSprite;
 };
