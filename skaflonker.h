@@ -8,14 +8,14 @@
 #include "guyframework/graphics/tools/texthud.h"
 #include "guyframework/graphics/tools/frameshud.h"
 
-#include "player.h"
+#include "ingame.h"
 
 
 class Skaflonker : public Guy::Game, public Guy::FocusListener, public Guy::KeyboardListener
 {
 public:
-    Skaflonker();
-    virtual ~Skaflonker();
+	Skaflonker();
+	virtual ~Skaflonker();
 
 protected:
 	void init();
@@ -36,9 +36,6 @@ protected:
 	void onKeyDown(wchar_t unicode, Guy::Keyboard::Key key, Guy::Keyboard::Mod mods);
 
 	Guy::FramesHUD frames;
-	Guy::Camera2D camera;
-
-	Player player;
-    Player player2;
+	Ingame game;
 };
 

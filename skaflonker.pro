@@ -13,14 +13,16 @@ SOURCES += \
     sprite.cpp \
     player.cpp \
     action.cpp \
-    actionsfighter.cpp
+    actionsfighter.cpp \
+    ingame.cpp
 
 HEADERS += \
     skaflonker.h \
     sprite.h \
     player.h \
     action.h \
-    actionsfighter.h
+    actionsfighter.h \
+    ingame.h
 
 DESTDIR = $$PWD/
 
