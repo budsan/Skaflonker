@@ -23,6 +23,7 @@ void Ingame::load()
 	player2.playTrack("idle");
 
 	camera.init();
+	camera.setPos(math::vec2f(0, 600));
 }
 
 void Ingame::draw()
@@ -33,14 +34,23 @@ void Ingame::draw()
 	screen.fillWithColor(Guy::rgba(0.75f, 0.75f, 0.75f, 1));
 
 	camera.setZoom(0.5);
-	camera.setPos(math::vec2f(0, 600));
+
+	math::vec3d& p1pos = player.position();
+	math::vec3d& p2pos = player2.position();
+	math::vec2d p1ProjPos(p1pos.x, p1pos.y + (p1pos.z/2));
+	math::vec2d p2ProjPos(p2pos.x, p2pos.y + (p2pos.z/2));
+
+	double dist = (p2ProjPos - p1ProjPos).module();
+	math::vec2d cent = (p1ProjPos + p2ProjPos)/2;
+
+	cameraPos = cameraPos * 0.95 + cent * 0.05;
+	camera.setPos(cameraPos + math::vec2d(0, 300));
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(camera.projectionMatrix().v);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(camera.viewMatrix().v);
-
 
 	if (player.position().z > player2.position().z )
 	{
