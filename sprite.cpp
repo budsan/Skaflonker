@@ -106,7 +106,7 @@ void Sprite::draw()
 	preDrawing();
 
 	math::mat4d model = math::mat4d::fromIdentity();
-	model.translate(m_pos.x, m_pos.y, 0.0);
+	model.translate(m_pos.x, m_pos.y + (m_pos.z/2), 0.0);
 	model.scale(m_unitsPerPixel*m_scale.x, m_unitsPerPixel*m_scale.y, 0.0);
 	model.rotate(m_rotate, 0.0, 0.0, 1.0);
 	model.translate(static_cast<double>(-params.cx), static_cast<double>(+params.cy), 0);

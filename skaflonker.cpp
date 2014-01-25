@@ -16,7 +16,7 @@
 Skaflonker theGame;
 
 Skaflonker::Skaflonker()
-    : player2(1)
+	: player2(1)
 {
 
 }
@@ -38,22 +38,22 @@ const char *Skaflonker::version()
 
 void Skaflonker::init()
 {
-    Guy::Environment &env = Guy::Environment::instance();
-    env.setFrameRate(60, Guy::Environment::StableWithFrameSkipDeltaTime);
-    env.screen().setMode(Guy::Screen::Mode(0, 0), false);
+	Guy::Environment &env = Guy::Environment::instance();
+	env.setFrameRate(60, Guy::Environment::StableWithFrameSkipDeltaTime);
+	env.screen().setMode(Guy::Screen::Mode(0, 0), false);
 
-    Guy::Input &in = env.input();
-    in.addFocusListener(this);
+	Guy::Input &in = env.input();
+	in.addFocusListener(this);
 
-    ActionsFighter* actionsFighterOne = new ActionsFighterOne();
-    in.keyboard().addListener(actionsFighterOne);
+	ActionsFighter* actionsFighterOne = new ActionsFighterOne();
+	in.keyboard().addListener(actionsFighterOne);
 
-    ActionsFighter* actionsFighterTwo = new ActionsFighterTwo();
-    in.keyboard().addListener(actionsFighterTwo);
+	ActionsFighter* actionsFighterTwo = new ActionsFighterTwo();
+	in.keyboard().addListener(actionsFighterTwo);
 
-    std::vector<Actions*> &actions = Actions::instance();
-    actions.push_back(actionsFighterOne);
-    actions.push_back(actionsFighterTwo);
+	std::vector<Actions*> &actions = Actions::instance();
+	actions.push_back(actionsFighterOne);
+	actions.push_back(actionsFighterTwo);
 }
 
 void Skaflonker::load()
@@ -65,13 +65,13 @@ void Skaflonker::load()
 
 	frames.setColor(Guy::rgba(0,0,0,1));
 
-    std::shared_ptr<Player::Library> dinoazul = Player::loadDirectory("data/animations/dinoazul");
+	std::shared_ptr<Player::Library> dinoazul = Player::loadDirectory("data/animations/dinoazul");
 	player.setLibrary(dinoazul);
 	player.playTrack("idle");
 
-    std::shared_ptr<Player::Library> dinorojo = Player::loadDirectory("data/animations/dinorojo");
-    player2.setLibrary(dinorojo);
-    player2.playTrack("idle");
+	std::shared_ptr<Player::Library> dinorojo = Player::loadDirectory("data/animations/dinorojo");
+	player2.setLibrary(dinorojo);
+	player2.playTrack("idle");
 
 	camera.init();
 }
@@ -85,9 +85,9 @@ void Skaflonker::update(double deltaTime)
 {
 	(void) deltaTime;
 
-    frames.update(deltaTime);
-    player.update(deltaTime);
-    player2.update(deltaTime);
+	frames.update(deltaTime);
+	player.update(deltaTime);
+	player2.update(deltaTime);
 
 	Actions::endOfFrameAll();
 }
@@ -108,8 +108,19 @@ void Skaflonker::draw()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(camera.viewMatrix().v);
 
-	player.draw();
-    player2.draw();
+
+	if (player.position().z > player2.position().z )
+	{
+		player.draw();
+		player2.draw();
+	}
+	else
+	{
+		player2.draw();
+		player.draw();
+	}
+
+
 	frames.draw();
 }
 

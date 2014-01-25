@@ -12,16 +12,16 @@
 class Player : public Sprite
 {
 public:
-    enum HorizontalDirection
-    {
-        LeftDirection,
-        RightDirection
-    };
-    enum VerticalDirection
-    {
-        UpDirection,
-        DownDirection
-    };
+	enum HorizontalDirection
+	{
+		LeftDirection,
+		RightDirection
+	};
+	enum VerticalDirection
+	{
+		UpDirection,
+		DownDirection
+	};
 
 	struct Keyframe
 	{
@@ -51,9 +51,9 @@ public:
 		std::map<std::string, std::size_t> trackNames;
 	};
 
-    Player(std::size_t playerID = 0);
+	Player(std::size_t playerID = 0);
 
-    virtual void update(double delta);
+	virtual void update(double delta);
 
 	std::size_t trackID(const std::string &name);
 
@@ -69,7 +69,7 @@ public:
 
 	static std::shared_ptr<Library> loadDirectory(const std::string &path);
 
-    void setFacingDirection(HorizontalDirection direction);
+	void setFacingDirection(HorizontalDirection direction);
 
 private:
 	static bool loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library>& lib);
@@ -82,10 +82,9 @@ private:
 	std::size_t m_nextKeyframeTime;
 	std::size_t m_trackFrame;
 
-    math::vec2d m_acceleration;
-    math::vec2d m_velocity;
+	math::vec3d m_velocity;
 
-//    std::size_t m_idleTrack;
+	//std::size_t m_idleTrack;
 
 	void nextFrame();
 	void nextKeyframeTime();

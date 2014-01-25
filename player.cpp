@@ -42,7 +42,7 @@ void Player::update(double /*delta*/)
             {
                 ensureTrack("idle");
             } else {
-                math::vec2d facingDirection;
+		math::vec3d facingDirection;
                 if (state.isPressed(ActionsFighter::Right)) {
                     ensureTrack("run");
                     setFacingDirection(RightDirection);
@@ -55,10 +55,10 @@ void Player::update(double /*delta*/)
 
                 if (state.isPressed(ActionsFighter::Up)) {
                     ensureTrack("run");
-                    facingDirection.y = 1.0;
+		    facingDirection.z = 1.0;
                 } else if (state.isPressed(ActionsFighter::Down)) {
                     ensureTrack("run");
-                    facingDirection.y = -1.0;
+		    facingDirection.z = -1.0;
                 }
 
                 m_velocity += facingDirection.normalized() * Acceleration;
@@ -67,33 +67,22 @@ void Player::update(double /*delta*/)
     }
 
     position() += m_velocity;
-//    if (m_velocity.x > 0.0) {
-//        m_velocity.x = std::min(std::max(0.0, m_velocity.x - Friction), MaxVelocity);
-//    }
-//    else {
-//        m_velocity.x = std::max(std::min(0.0, m_velocity.x + Friction), -MaxVelocity);
-//    }
-//    if (m_velocity.y > 0.0) {
-//        m_velocity.y = std::max(std::max(0.0, m_velocity.y - Friction), MaxVelocity);
-//    }
-//    else {
-//        m_velocity.y = std::min(std::min(0.0, m_velocity.y + Friction), -MaxVelocity);
-//    }
+
     if (m_velocity.x > 0.0) {
         m_velocity.x = std::max(0.0, m_velocity.x - Friction);
     }
     else {
         m_velocity.x = std::min(0.0, m_velocity.x + Friction);
     }
-    if (m_velocity.y > 0.0) {
-        m_velocity.y = std::max(0.0, m_velocity.y - Friction);
+    if (m_velocity.z> 0.0) {
+	m_velocity.z= std::max(0.0, m_velocity.z- Friction);
     }
     else {
-        m_velocity.y = std::min(0.0, m_velocity.y + Friction);
+	m_velocity.z= std::min(0.0, m_velocity.z+ Friction);
     }
 
     m_velocity.x = std::max(std::min(m_velocity.x, MaxVelocity), -MaxVelocity);
-    m_velocity.y = std::max(std::min(m_velocity.y, MaxVelocity), -MaxVelocity);
+    m_velocity.z = std::max(std::min(m_velocity.z, MaxVelocity), -MaxVelocity);
 
 	if (m_lib == nullptr) return;
 	if (++m_trackFrame >= m_nextKeyframeTime) {

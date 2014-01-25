@@ -23,7 +23,7 @@ public:
 	math::vec2d scale() { return m_scale; }
 	double rotation()  { return m_rotate; }
 
-	math::vec2d &position() { return m_pos;}
+	math::vec3d &position() { return m_pos;}
 private:
 	static double s_globalUnitsPerPixel;
 	double m_unitsPerPixel;
@@ -41,5 +41,5 @@ protected:
 	virtual void preDrawing();
 	virtual void postDrawing();
 
-	math::vec2d m_pos;
+	math::vec3d m_pos;
 };
