@@ -1,0 +1,54 @@
+{
+    "fps": 60,
+    "frameCount": 15,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "jumprojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -146,
+                    "y": -358
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 356
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "stand1rojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -142,
+                    "y": -355
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 6
+        }
+    ]
+}

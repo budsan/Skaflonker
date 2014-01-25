@@ -1,0 +1,54 @@
+{
+    "fps": 60,
+    "frameCount": 15,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "sostenerrojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -144,
+                    "y": -355
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "lanzarrojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -144.14943222714666,
+                    "y": -355.42988644542942
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 310,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 5
+        }
+    ]
+}

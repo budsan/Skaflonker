@@ -1,0 +1,54 @@
+{
+    "fps": 60,
+    "frameCount": 25,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "ontheground1rojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -240,
+                    "y": -346
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 364,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "ontheground2rojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -187.79499999999996,
+                    "y": -427.16749999999979
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 386,
+                        "y": 436.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 13
+        }
+    ]
+}

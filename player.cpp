@@ -12,12 +12,13 @@
 #include "graphics/texturemanager.h"
 #include "debug.h"
 
-Player::Player(std::size_t m_playerID)
+Player::Player(std::size_t playerID)
 	: Sprite(),
 	  m_currentTrack(0),
 	  m_currentKeyframe(0),
 	  m_nextKeyframeTime(0),
-	  m_trackFrame(0)
+      m_trackFrame(0),
+      m_playerID(playerID)
 {
 
 }

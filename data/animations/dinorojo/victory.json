@@ -1,0 +1,30 @@
+{
+    "fps": 60,
+    "frameCount": 15,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "victoryrojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -144.34248376756801,
+                    "y": -354.63006492972795
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        }
+    ]
+}

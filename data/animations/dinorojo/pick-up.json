@@ -1,0 +1,54 @@
+{
+    "fps": 60,
+    "frameCount": 20,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "pillarrojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -162,
+                    "y": -355
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "sostenerrojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -139.13043478260872,
+                    "y": -353.11909262759934
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 9
+        }
+    ]
+}

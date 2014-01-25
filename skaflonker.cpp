@@ -16,6 +16,7 @@
 Skaflonker theGame;
 
 Skaflonker::Skaflonker()
+    : player2(1)
 {
 
 }
@@ -64,9 +65,13 @@ void Skaflonker::load()
 
 	frames.setColor(Guy::rgba(0,0,0,1));
 
-	std::shared_ptr<Player::Library> dinoazul = player.loadDirectory("data/animations/dinoazul");
+    std::shared_ptr<Player::Library> dinoazul = Player::loadDirectory("data/animations/dinoazul");
 	player.setLibrary(dinoazul);
 	player.playTrack("idle");
+
+    std::shared_ptr<Player::Library> dinorojo = Player::loadDirectory("data/animations/dinorojo");
+    player2.setLibrary(dinorojo);
+    player2.playTrack("idle");
 
 	camera.init();
 }
@@ -80,8 +85,9 @@ void Skaflonker::update(double deltaTime)
 {
 	(void) deltaTime;
 
-	frames.update(deltaTime);
+    frames.update(deltaTime);
     player.update(deltaTime);
+    player2.update(deltaTime);
 
 	Actions::endOfFrameAll();
 }
@@ -103,6 +109,7 @@ void Skaflonker::draw()
 	glLoadMatrixf(camera.viewMatrix().v);
 
 	player.draw();
+    player2.draw();
 	frames.draw();
 }
 

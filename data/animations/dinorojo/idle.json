@@ -1,0 +1,54 @@
+{
+    "fps": 60,
+    "frameCount": 30,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "stand1rojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -141.50750000000002,
+                    "y": -355.75249999999994
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "stand2rojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -142.09592110904993,
+                    "y": -355.82303287255263
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 16
+        }
+    ]
+}

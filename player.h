@@ -51,7 +51,7 @@ public:
 		std::map<std::string, std::size_t> trackNames;
 	};
 
-	Player(std::size_t m_playerID = 0);
+    Player(std::size_t playerID = 0);
 
     virtual void update(double delta);
 

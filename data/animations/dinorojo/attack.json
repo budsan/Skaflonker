@@ -1,0 +1,54 @@
+{
+    "fps": 60,
+    "frameCount": 15,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "attack1rojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -101.27588573720578,
+                    "y": -354.63564020100773
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.41000000000003
+                    },
+                    "topLeft": {
+                        "x": -0.5,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "attack2rojo.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -101.02032623143796,
+                    "y": -354.29442552775913
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.41000000000003
+                    },
+                    "topLeft": {
+                        "x": -0.5,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 7
+        }
+    ]
+}
