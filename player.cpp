@@ -84,6 +84,49 @@ bool Player::loadTrackFile(const std::string& file, const std::string& name, std
 			key.rect.update(math::vec2i(    topLeft.get("x", "UTF-8").asInt(),     topLeft.get("y", "UTF-8").asInt()));
 		}
 
+		{
+			const Json::Value custom = data["customProperties"];
+			Json::Value::Members members = custom.getMemberNames();
+			for(std::size_t i; i < members.size(); ++i) {
+				if (members[i] == std::string("velx"))
+				{
+					key.acceleration.x = custom.get("velx", "UTF-8").asDouble();
+					key.useAsVelocity = true;
+				}
+				else if (members[i] == std::string("vely"))
+				{
+					key.acceleration.y = custom.get("vely", "UTF-8").asDouble();
+					key.useAsVelocity = true;
+				}
+				else if (members[i] == std::string("accx"))
+				{
+					key.acceleration.x = custom.get("accx", "UTF-8").asDouble();
+					key.useAsVelocity = false;
+				}
+				else if (members[i] == std::string("accy"))
+				{
+					key.acceleration.y = custom.get("accy", "UTF-8").asDouble();
+					key.useAsVelocity = false;
+				}
+				else if (members[i] == std::string("frix"))
+				{
+					key.friction.x = custom.get("frix", "UTF-8").asDouble();
+				}
+				else if (members[i] == std::string("friy"))
+				{
+					key.friction.y = custom.get("friy", "UTF-8").asDouble();
+				}
+				else if (members[i] == std::string("maxx"))
+				{
+					key.maxVel.x = custom.get("maxx", "UTF-8").asDouble();
+				}
+				else if (members[i] == std::string("maxy"))
+				{
+					key.maxVel.y = custom.get("maxy", "UTF-8").asDouble();
+				}
+			}
+		}
+
 		const Json::Value hitBoxes = data["hitBoxes"];
 		for ( int index = 0; index < hitBoxes.size(); ++index )
 		{

@@ -20,6 +20,11 @@ public:
 		math::vec2d origin;
 		std::size_t frame;
 
+		bool useAsVelocity;
+		math::vec2d acceleration;
+		math::vec2d friction;
+		math::vec2d maxVel;
+
 		std::vector<math::bbox2i> body;
 		std::vector<math::bbox2i> damage;
 	};
