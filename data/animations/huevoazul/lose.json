@@ -1,0 +1,30 @@
+{
+    "fps": 60,
+    "frameCount": 15,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevoloseblau.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -148,
+                    "y": -338
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        }
+    ]
+}

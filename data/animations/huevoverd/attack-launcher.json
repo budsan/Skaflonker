@@ -1,0 +1,78 @@
+{
+    "fps": 60,
+    "frameCount": 30,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevoatac1verd.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -133,
+                    "y": -328
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevoatac2verd.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -166,
+                    "y": -328
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 9
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevoatac1verd.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -135,
+                    "y": -326
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 24
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "fps": 60,
+    "frameCount": 30,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "standhuevoblau.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -134.54999999999998,
+                    "y": -339.25
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "standhuevoblau2.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -134.5564935088139,
+                    "y": -339.53973860356263
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 16
+        }
+    ]
+}
