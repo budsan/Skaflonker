@@ -16,6 +16,8 @@ public:
 	void draw();
 
 private:
+	void nextBackground();
+
 	Guy::Camera2D camera;
 	math::vec2d cameraPos;
 	float zoom;
@@ -23,4 +25,8 @@ private:
 	Player player;
 	Player player2;
 	StandardSprite m_shadowSprite;
+	StandardSprite m_backgroundSprite;
+
+	double m_accumulatedTime;
+	int m_currentBackground;
 };

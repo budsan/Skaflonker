@@ -1,16 +1,26 @@
 #include "ingame.h"
 
 #include "environment.h"
+#include <set>
 
-Ingame::Ingame() : player(0), player2(1)
+const std::vector<std::string> Backgrounds{"background-1.png", "background-2.png", "background-3.png"};
+
+Ingame::Ingame() : player(0), player2(1), m_currentBackground(0)
 {
 	m_shadowSprite.setFileName("shadow.png");
+	m_backgroundSprite.setScale(6.0);
+	nextBackground();
 }
 
 void Ingame::update(double deltaTime)
 {
+	m_accumulatedTime += deltaTime;
 	player.update(deltaTime);
 	player2.update(deltaTime);
+	if (m_accumulatedTime > 5.0) {
+		m_accumulatedTime = 0;
+		nextBackground();
+	}
 }
 
 void Ingame::load()
@@ -54,6 +64,8 @@ void Ingame::draw()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(camera.viewMatrix().v);
 
+	m_backgroundSprite.draw();
+
 	m_shadowSprite.setPosition(player.floorPosition());
 	m_shadowSprite.draw();
 
@@ -70,4 +82,10 @@ void Ingame::draw()
 		player2.draw();
 		player.draw();
 	}
+}
+
+void Ingame::nextBackground()
+{
+	m_currentBackground = (++m_currentBackground) % Backgrounds.size();
+	m_backgroundSprite.setFileName(Backgrounds.at(m_currentBackground));
 }
