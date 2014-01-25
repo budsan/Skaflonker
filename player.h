@@ -7,11 +7,11 @@
 #include <memory>
 
 #include "math/bbox.h"
-#include "sprite.h"
+#include "animatedsprite.h"
 
 class StandardSprite;
 
-class Player : public Sprite
+class Player : public AnimatedSprite
 {
 public:
 	enum HorizontalDirection
@@ -25,67 +25,16 @@ public:
 		DownDirection
 	};
 
-	struct Keyframe
-	{
-		std::string filename;
-		math::bbox2i rect;
-		math::vec2d origin;
-		std::size_t frame;
-
-		bool useAsVelocity;
-		math::vec2d acceleration;
-		math::vec2d friction;
-		math::vec2d maxVel;
-
-		std::vector<math::bbox2i> body;
-		std::vector<math::bbox2i> damage;
-	};
-
-	struct Track
-	{
-		std::size_t frameCount;
-		std::vector<Keyframe> keyframes;
-	};
-
-	struct Library
-	{
-		std::vector<Track> tracks;
-		std::map<std::string, std::size_t> trackNames;
-	};
-
 	Player(std::size_t playerID = 0);
 
-	virtual void update(double delta);
-
-	std::size_t trackID(const std::string &name);
-
-	bool setLibrary(std::shared_ptr<Library> data);
-	std::shared_ptr<Library> library() { return m_lib; }
-
-	bool ensureTrack(const std::string &name);
-
-	bool playTrack(const std::string &name);
-	bool playTrack(std::size_t animID);
-
-	void drawParameters(Sprite::DrawParameters &params) override;
-
-	static std::shared_ptr<Library> loadDirectory(const std::string &path);
+	virtual void update();
 
 	void setFacingDirection(HorizontalDirection direction);
 
-	math::vec2d projectedPosition() const;
-	math::vec2d floorPosition() const;
+	static std::shared_ptr<Player::Library> loadDirectory(const std::string &path);
 
 private:
-	static bool loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library>& lib);
-
-	std::shared_ptr<Library> m_lib;
-
 	std::size_t m_playerID;
-	std::size_t m_currentTrack;
-	std::size_t m_currentKeyframe;
-	std::size_t m_nextKeyframeTime;
-	std::size_t m_trackFrame;
 
 	math::vec3d m_velocity;
 
@@ -93,4 +42,8 @@ private:
 
 	void nextFrame();
 	void nextKeyframeTime();
+
+	// AnimatedSprite interface
+protected:
+	void currentTrackFinished();
 };

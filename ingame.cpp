@@ -19,8 +19,8 @@ Ingame::Ingame() : player(0), player2(1), m_currentBackground(0)
 void Ingame::update(double deltaTime)
 {
 	m_accumulatedTime += deltaTime;
-	player.update(deltaTime);
-	player2.update(deltaTime);
+	player.update();
+	player2.update();
 	if (m_accumulatedTime > 5.0) {
 		m_accumulatedTime = 0;
 		nextBackground();

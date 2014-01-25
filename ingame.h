@@ -28,6 +28,8 @@ private:
 	StandardSprite m_shadowSprite;
 	StandardSprite m_backgroundSprite;
 
+//	std::vector<Box *> m_boxes;
+
 	double m_accumulatedTime;
 	int m_currentBackground;
 };
