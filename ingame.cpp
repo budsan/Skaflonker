@@ -3,7 +3,7 @@
 #include "environment.h"
 #include <set>
 
-const std::vector<std::string> Backgrounds{"background-1.png", "background-2.png", "background-3.png"};
+const std::vector<std::string> Backgrounds{/*"background-1.png",*/ "background-2.png", "background-3.png"};
 
 Ingame::Ingame() : player(0), player2(1), m_currentBackground(0)
 {
