@@ -26,8 +26,11 @@ void Player::update()
 {
 	Actions &state = *Actions::instance()[m_playerID];
 
-	if (state.isDown(ActionsFighter::Attack)) {
-		playTrack("attack");
+	if (state.isPressed(ActionsFighter::Attack)) {
+		ensureTrack("attack");
+	}
+	else {
+		ensureTrack("idle");
 	}
 
 	if (m_lib == nullptr) return;
@@ -204,6 +207,18 @@ std::size_t Player::trackID(const std::string &name)
 	auto it = m_lib->trackNames.find(name);
 	if (it == m_lib->trackNames.end()) return m_lib->tracks.size();
 	return it->second;
+}
+
+bool Player::ensureTrack(const std::string &name)
+{
+	if (m_lib == nullptr)
+		return false;
+
+	std::size_t animID = trackID(name);
+	if (animID != m_currentTrack)
+		return playTrack(animID);
+
+	return true;
 }
 
 bool Player::playTrack(const std::string &name)

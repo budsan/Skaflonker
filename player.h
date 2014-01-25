@@ -50,6 +50,8 @@ public:
 	bool setLibrary(std::shared_ptr<Library> data);
 	std::shared_ptr<Library> library() { return m_lib; }
 
+	bool ensureTrack(const std::string &name);
+
 	bool playTrack(const std::string &name);
 	bool playTrack(std::size_t animID);
 

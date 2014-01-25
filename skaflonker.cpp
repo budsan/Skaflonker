@@ -93,8 +93,8 @@ void Skaflonker::draw()
 	Guy::Screen &screen = Guy::Environment::instance().screen();
 	screen.fillWithColor(Guy::rgba(0.75f, 0.75f, 0.75f, 1));
 
-	camera.setZoom(1);
-	camera.setPos(player.position());
+	camera.setZoom(0.5);
+	camera.setPos(math::vec2f(0, 600));
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(camera.projectionMatrix().v);
