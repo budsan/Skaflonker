@@ -1,10 +1,14 @@
 #pragma once
-#include "guyframework/game.h"
 
+#include "guyframework/game.h"
 #include "guyframework/input/input.h"
 #include "guyframework/input/keyboardlistener.h"
 
-#include "fighter.h"
+#include "guyframework/graphics/camera2d.h"
+#include "guyframework/graphics/tools/texthud.h"
+#include "guyframework/graphics/tools/frameshud.h"
+
+#include "player.h"
 
 
 class Skaflonker : public Guy::Game, public Guy::FocusListener, public Guy::KeyboardListener
@@ -31,6 +35,8 @@ protected:
 	void onKeyUp(wchar_t unicode, Guy::Keyboard::Key key, Guy::Keyboard::Mod mods);
 	void onKeyDown(wchar_t unicode, Guy::Keyboard::Key key, Guy::Keyboard::Mod mods);
 
-	Fighter fighter;
+	Guy::FramesHUD frames;
+	Guy::Camera2D camera;
+	Player player;
 };
 

@@ -6,19 +6,22 @@
 #include <set>
 #include <memory>
 
+#include "math/bbox.h"
 #include "sprite.h"
 
-class AnimatedSprite : public Sprite
+class Player : public Sprite
 {
 public:
 
 	struct Keyframe
 	{
 		std::string filename;
-		math::vec2d bottomLeft;
-		math::vec2d topRight;
+		math::bbox2i rect;
 		math::vec2d origin;
 		std::size_t frame;
+
+		std::vector<math::bbox2i> body;
+		std::vector<math::bbox2i> damage;
 	};
 
 	struct Track
@@ -33,10 +36,12 @@ public:
 		std::map<std::string, std::size_t> trackNames;
 	};
 
-	AnimatedSprite();
-	AnimatedSprite(std::shared_ptr<Library> data);
+	Player();
+	Player(std::shared_ptr<Library> data);
 
 	virtual void update();
+
+	bool loadDirectory(const std::string &path);
 
 	std::size_t trackID(const std::string &name);
 
@@ -47,6 +52,8 @@ public:
 	void drawParameters(Sprite::DrawParameters &params) override;
 
 private:
+	bool loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library>& lib);
+
 	std::shared_ptr<Library> m_lib;
 
 	std::size_t m_currentTrack;

@@ -41,7 +41,17 @@ void Skaflonker::init()
 
 void Skaflonker::load()
 {
-	fighter.loadDirectory("data/animations/dinoazul");
+	if (!frames.loadFont("data/font/cutecartoon.ttf"))
+	{
+		Guy::printLog("ERROR: Loading frames font\n");
+	}
+
+	frames.setColor(Guy::rgba(0,0,0,1));
+
+	player.loadDirectory("data/animations/dinoazul");
+	player.playTrack("idle");
+
+	camera.init();
 }
 
 void Skaflonker::unload()
@@ -51,12 +61,30 @@ void Skaflonker::unload()
 
 void Skaflonker::update(double deltaTime)
 {
+	(void) deltaTime;
 
+	frames.update(deltaTime);
+	player.update();
 }
 
 void Skaflonker::draw()
 {
+	glDisable(GL_DEPTH_TEST);
 
+	Guy::Screen &screen = Guy::Environment::instance().screen();
+	screen.fillWithColor(Guy::rgba(0.75f, 0.75f, 0.75f, 1));
+
+	camera.setZoom(1);
+	camera.setPos(player.position());
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf(camera.projectionMatrix().v);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixf(camera.viewMatrix().v);
+
+	player.draw();
+	frames.draw();
 }
 
 void Skaflonker::onGainInputFocus()
