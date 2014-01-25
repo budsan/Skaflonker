@@ -76,6 +76,11 @@ void Ingame::draw()
 
 	m_backgroundSprite.draw();
 
+	for(Box *box : m_boxes) {
+		m_shadowSprite.setPosition(box->floorPosition());
+		m_shadowSprite.draw();
+	}
+
 	m_shadowSprite.setPosition(player.floorPosition());
 	m_shadowSprite.draw();
 
