@@ -70,8 +70,6 @@ public:
 	static std::shared_ptr<Library> loadDirectory(const std::string &path);
 
     void setFacingDirection(HorizontalDirection direction);
-    void moveHorizontallyTo(HorizontalDirection direction, double delta);
-    void moveVerticallyTo(VerticalDirection direction, double delta);
 
 private:
 	static bool loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library>& lib);
@@ -83,6 +81,9 @@ private:
 	std::size_t m_currentKeyframe;
 	std::size_t m_nextKeyframeTime;
 	std::size_t m_trackFrame;
+
+    math::vec2d m_acceleration;
+    math::vec2d m_velocity;
 
 //    std::size_t m_idleTrack;
 

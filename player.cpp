@@ -23,13 +23,14 @@ Player::Player(std::size_t playerID)
 
 }
 
-void Player::update(double delta)
+void Player::update(double /*delta*/)
 {
+    const double Acceleration = 4.0;
+    const double Friction = 1.0;
+    const double MaxVelocity = 15.0;
+
 	Actions &state = *Actions::instance()[m_playerID];
 
-//    setFacingDirection(LeftDirection);
-
-//    ensureTrack("defend");
     if (m_currentTrack != trackID("attack")) {
         if (state.isDown(ActionsFighter::Attack)) {
             ensureTrack("attack");
@@ -41,27 +42,58 @@ void Player::update(double delta)
             {
                 ensureTrack("idle");
             } else {
+                math::vec2d facingDirection;
                 if (state.isPressed(ActionsFighter::Right)) {
                     ensureTrack("run");
                     setFacingDirection(RightDirection);
-                    moveHorizontallyTo(RightDirection, delta);
+                    facingDirection.x = 1.0;
                 } else if (state.isPressed(ActionsFighter::Left)) {
                     ensureTrack("run");
                     setFacingDirection(LeftDirection);
-                    moveHorizontallyTo(LeftDirection, delta);
+                    facingDirection.x = -1.0;
                 }
 
                 if (state.isPressed(ActionsFighter::Up)) {
                     ensureTrack("run");
-                    moveVerticallyTo(UpDirection, delta);
+                    facingDirection.y = 1.0;
                 } else if (state.isPressed(ActionsFighter::Down)) {
                     ensureTrack("run");
-                    moveVerticallyTo(DownDirection, delta);
+                    facingDirection.y = -1.0;
                 }
+
+                m_velocity += facingDirection.normalized() * Acceleration;
             }
         }
     }
 
+    position() += m_velocity;
+//    if (m_velocity.x > 0.0) {
+//        m_velocity.x = std::min(std::max(0.0, m_velocity.x - Friction), MaxVelocity);
+//    }
+//    else {
+//        m_velocity.x = std::max(std::min(0.0, m_velocity.x + Friction), -MaxVelocity);
+//    }
+//    if (m_velocity.y > 0.0) {
+//        m_velocity.y = std::max(std::max(0.0, m_velocity.y - Friction), MaxVelocity);
+//    }
+//    else {
+//        m_velocity.y = std::min(std::min(0.0, m_velocity.y + Friction), -MaxVelocity);
+//    }
+    if (m_velocity.x > 0.0) {
+        m_velocity.x = std::max(0.0, m_velocity.x - Friction);
+    }
+    else {
+        m_velocity.x = std::min(0.0, m_velocity.x + Friction);
+    }
+    if (m_velocity.y > 0.0) {
+        m_velocity.y = std::max(0.0, m_velocity.y - Friction);
+    }
+    else {
+        m_velocity.y = std::min(0.0, m_velocity.y + Friction);
+    }
+
+    m_velocity.x = std::max(std::min(m_velocity.x, MaxVelocity), -MaxVelocity);
+    m_velocity.y = std::max(std::min(m_velocity.y, MaxVelocity), -MaxVelocity);
 
 	if (m_lib == nullptr) return;
 	if (++m_trackFrame >= m_nextKeyframeTime) {
@@ -91,20 +123,6 @@ void Player::setFacingDirection(Player::HorizontalDirection direction)
     }
 
     setScale(math::vec2d(1, 1));
-}
-
-const double Acceleration = 10.0;
-
-void Player::moveHorizontallyTo(Player::HorizontalDirection direction, double delta)
-{
-    double transformedAcceleration = Acceleration * ((direction == LeftDirection)? -1.0 : 1.0);
-    position().x += transformedAcceleration /** delta*/;
-}
-
-void Player::moveVerticallyTo(Player::VerticalDirection direction, double delta)
-{
-    double transformedAcceleration = Acceleration * ((direction == DownDirection)? -1.0 : 1.0);
-    position().y += transformedAcceleration /** delta*/;
 }
 
 bool Player::loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library> &lib)
