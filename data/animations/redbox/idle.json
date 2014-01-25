@@ -10,8 +10,8 @@
                 "hitBoxes": [
                 ],
                 "offset": {
-                    "x": 0,
-                    "y": 0
+                    "x": -120,
+                    "y": -223
                 },
                 "rect": {
                     "bottomRight": {
@@ -34,8 +34,8 @@
                 "hitBoxes": [
                 ],
                 "offset": {
-                    "x": 0,
-                    "y": 0
+                    "x": -117,
+                    "y": -225
                 },
                 "rect": {
                     "bottomRight": {
