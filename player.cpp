@@ -17,72 +17,72 @@ Player::Player(std::size_t playerID)
 	  m_currentTrack(0),
 	  m_currentKeyframe(0),
 	  m_nextKeyframeTime(0),
-      m_trackFrame(0),
-      m_playerID(playerID)
+	  m_trackFrame(0),
+	  m_playerID(playerID)
 {
 
 }
 
 void Player::update(double /*delta*/)
 {
-    const double Acceleration = 4.0;
-    const double Friction = 1.0;
-    const double MaxVelocity = 15.0;
+	const double Acceleration = 4.0;
+	const double Friction = 1.0;
+	const double MaxVelocity = 15.0;
 
 	Actions &state = *Actions::instance()[m_playerID];
 
-    if (m_currentTrack != trackID("attack")) {
-        if (state.isDown(ActionsFighter::Attack)) {
-            ensureTrack("attack");
-        } else if (state.isPressed(ActionsFighter::Block)) {
-            ensureTrack("defend");
-        } else {
-            if (!state.isPressed(ActionsFighter::Right) && !state.isPressed(ActionsFighter::Left)
-                    && !state.isPressed(ActionsFighter::Up) && !state.isPressed(ActionsFighter::Down))
-            {
-                ensureTrack("idle");
-            } else {
-		math::vec3d facingDirection;
-                if (state.isPressed(ActionsFighter::Right)) {
-                    ensureTrack("run");
-                    setFacingDirection(RightDirection);
-                    facingDirection.x = 1.0;
-                } else if (state.isPressed(ActionsFighter::Left)) {
-                    ensureTrack("run");
-                    setFacingDirection(LeftDirection);
-                    facingDirection.x = -1.0;
-                }
+	if (m_currentTrack != trackID("attack")) {
+		if (state.isDown(ActionsFighter::Attack)) {
+			ensureTrack("attack");
+		} else if (state.isPressed(ActionsFighter::Block)) {
+			ensureTrack("defend");
+		} else {
+			if (!state.isPressed(ActionsFighter::Right) && !state.isPressed(ActionsFighter::Left)
+				&& !state.isPressed(ActionsFighter::Up) && !state.isPressed(ActionsFighter::Down))
+			{
+				ensureTrack("idle");
+			} else {
+				math::vec3d facingDirection;
+				if (state.isPressed(ActionsFighter::Right)) {
+					ensureTrack("run");
+					setFacingDirection(RightDirection);
+					facingDirection.x = 1.0;
+				} else if (state.isPressed(ActionsFighter::Left)) {
+					ensureTrack("run");
+					setFacingDirection(LeftDirection);
+					facingDirection.x = -1.0;
+				}
 
-                if (state.isPressed(ActionsFighter::Up)) {
-                    ensureTrack("run");
-		    facingDirection.z = 1.0;
-                } else if (state.isPressed(ActionsFighter::Down)) {
-                    ensureTrack("run");
-		    facingDirection.z = -1.0;
-                }
+				if (state.isPressed(ActionsFighter::Up)) {
+					ensureTrack("run");
+					facingDirection.z = 1.0;
+				} else if (state.isPressed(ActionsFighter::Down)) {
+					ensureTrack("run");
+					facingDirection.z = -1.0;
+				}
 
-                m_velocity += facingDirection.normalized() * Acceleration;
-            }
-        }
-    }
+				m_velocity += facingDirection.normalized() * Acceleration;
+			}
+		}
+	}
 
-    position() += m_velocity;
+	position() += m_velocity;
 
-    if (m_velocity.x > 0.0) {
-        m_velocity.x = std::max(0.0, m_velocity.x - Friction);
-    }
-    else {
-        m_velocity.x = std::min(0.0, m_velocity.x + Friction);
-    }
-    if (m_velocity.z> 0.0) {
-	m_velocity.z= std::max(0.0, m_velocity.z- Friction);
-    }
-    else {
-	m_velocity.z= std::min(0.0, m_velocity.z+ Friction);
-    }
+	if (m_velocity.x > 0.0) {
+		m_velocity.x = std::max(0.0, m_velocity.x - Friction);
+	}
+	else {
+		m_velocity.x = std::min(0.0, m_velocity.x + Friction);
+	}
+	if (m_velocity.z> 0.0) {
+		m_velocity.z= std::max(0.0, m_velocity.z- Friction);
+	}
+	else {
+		m_velocity.z= std::min(0.0, m_velocity.z+ Friction);
+	}
 
-    m_velocity.x = std::max(std::min(m_velocity.x, MaxVelocity), -MaxVelocity);
-    m_velocity.z = std::max(std::min(m_velocity.z, MaxVelocity), -MaxVelocity);
+	m_velocity.x = std::max(std::min(m_velocity.x, MaxVelocity), -MaxVelocity);
+	m_velocity.z = std::max(std::min(m_velocity.z, MaxVelocity), -MaxVelocity);
 
 	if (m_lib == nullptr) return;
 	if (++m_trackFrame >= m_nextKeyframeTime) {
@@ -92,26 +92,26 @@ void Player::update(double /*delta*/)
 
 std::shared_ptr<Player::Library> Player::loadDirectory(const std::string &path)
 {
-    std::shared_ptr<Library> lib = std::make_shared<Library>();
-    if (!loadTrackFile(path+"/idle.json", "idle", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/attack.json", "attack", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/run.json", "run", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/lose.json", "lose", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/defend.json", "defend", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/throw.json", "throw", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/victory.json", "victory", lib)) return std::shared_ptr<Library>();
+	std::shared_ptr<Library> lib = std::make_shared<Library>();
+	if (!loadTrackFile(path+"/idle.json", "idle", lib)) return std::shared_ptr<Library>();
+	if (!loadTrackFile(path+"/attack.json", "attack", lib)) return std::shared_ptr<Library>();
+	if (!loadTrackFile(path+"/run.json", "run", lib)) return std::shared_ptr<Library>();
+	if (!loadTrackFile(path+"/lose.json", "lose", lib)) return std::shared_ptr<Library>();
+	if (!loadTrackFile(path+"/defend.json", "defend", lib)) return std::shared_ptr<Library>();
+	if (!loadTrackFile(path+"/throw.json", "throw", lib)) return std::shared_ptr<Library>();
+	if (!loadTrackFile(path+"/victory.json", "victory", lib)) return std::shared_ptr<Library>();
 
-    return lib;
+	return lib;
 }
 
 void Player::setFacingDirection(Player::HorizontalDirection direction)
 {
-    if (direction == LeftDirection) {
-        setScale(math::vec2d(-1, 1));
-        return;
-    }
+	if (direction == LeftDirection) {
+		setScale(math::vec2d(-1, 1));
+		return;
+	}
 
-    setScale(math::vec2d(1, 1));
+	setScale(math::vec2d(1, 1));
 }
 
 bool Player::loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library> &lib)
@@ -243,7 +243,7 @@ bool Player::setLibrary(std::shared_ptr<Library> _data)
 		return false;
 	}
 
-//    m_idleTrack = trackID("idle");
+	//    m_idleTrack = trackID("idle");
 
 	return true;
 }
@@ -251,7 +251,7 @@ bool Player::setLibrary(std::shared_ptr<Library> _data)
 void Player::drawParameters(Sprite::DrawParameters &params)
 {
 	if (m_lib == nullptr) {
-        params.filename = nullptr;
+		params.filename = nullptr;
 		return;
 	}
 
@@ -325,8 +325,8 @@ void Player::nextFrame()
 	}
 	else {
 		m_currentKeyframe = 0;
-        if (m_currentTrack != trackID("run") && m_currentTrack != trackID("defend"))
-            ensureTrack("idle");
+		if (m_currentTrack != trackID("run") && m_currentTrack != trackID("defend"))
+			ensureTrack("idle");
 		m_trackFrame = m_lib->tracks[m_currentTrack].keyframes[m_currentKeyframe].frame;
 	}
 
