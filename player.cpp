@@ -28,14 +28,19 @@ void Player::update(double /*delta*/)
 	const double Acceleration = 4.0;
 	const double Friction = 1.0;
 	const double MaxVelocity = 15.0;
+	const double JumpVelocity = 50.0;
+	const double Gravity = 3.0;
 
 	Actions &state = *Actions::instance()[m_playerID];
 
-	if (m_currentTrack != trackID("attack")) {
+	// Uncomment the line below to make jumps more real :(
+	if (m_currentTrack != trackID("attack") /*&& position().y < 0.1*/) {
 		if (state.isDown(ActionsFighter::Attack)) {
 			ensureTrack("attack");
 		} else if (state.isPressed(ActionsFighter::Block)) {
 			ensureTrack("defend");
+		} else if (state.isPressed(ActionsFighter::Jump)) {
+			m_velocity.y = JumpVelocity;
 		} else {
 			if (!state.isPressed(ActionsFighter::Right) && !state.isPressed(ActionsFighter::Left)
 				&& !state.isPressed(ActionsFighter::Up) && !state.isPressed(ActionsFighter::Down))
@@ -68,21 +73,27 @@ void Player::update(double /*delta*/)
 
 	position() += m_velocity;
 
-	if (m_velocity.x > 0.0) {
-		m_velocity.x = std::max(0.0, m_velocity.x - Friction);
-	}
-	else {
-		m_velocity.x = std::min(0.0, m_velocity.x + Friction);
-	}
-	if (m_velocity.z> 0.0) {
-		m_velocity.z= std::max(0.0, m_velocity.z- Friction);
-	}
-	else {
-		m_velocity.z= std::min(0.0, m_velocity.z+ Friction);
-	}
+	if (position().y < 0.1) {
+		position().y = 0;
 
-	m_velocity.x = std::max(std::min(m_velocity.x, MaxVelocity), -MaxVelocity);
-	m_velocity.z = std::max(std::min(m_velocity.z, MaxVelocity), -MaxVelocity);
+		if (m_velocity.x > 0.0) {
+			m_velocity.x = std::max(0.0, m_velocity.x - Friction);
+		}
+		else {
+			m_velocity.x = std::min(0.0, m_velocity.x + Friction);
+		}
+		m_velocity.x = std::max(std::min(m_velocity.x, MaxVelocity), -MaxVelocity);
+
+		if (m_velocity.z > 0.0) {
+			m_velocity.z = std::max(0.0, m_velocity.z - Friction);
+		}
+		else {
+			m_velocity.z = std::min(0.0, m_velocity.z + Friction);
+		}
+		m_velocity.z = std::max(std::min(m_velocity.z, MaxVelocity), -MaxVelocity);
+	} else {
+		m_velocity.y -= Gravity;
+	}
 
 	if (m_lib == nullptr) return;
 	if (++m_trackFrame >= m_nextKeyframeTime) {
