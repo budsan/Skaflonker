@@ -7,4 +7,5 @@ Box::Box()
 	assert(loadTrackFile("data/animations/redbox/idle.json", "idle", lib));
 	setLibrary(lib);
 	ensureTrack("idle");
+	setScale(1.5);
 }
