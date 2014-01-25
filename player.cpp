@@ -22,7 +22,7 @@ Player::Player(std::size_t m_playerID)
 
 }
 
-void Player::update()
+void Player::update(double delta)
 {
 	Actions &state = *Actions::instance()[m_playerID];
 
@@ -41,21 +41,26 @@ void Player::update()
                 ensureTrack("idle");
             } else {
                 if (state.isPressed(ActionsFighter::Right)) {
+                    ensureTrack("run");
                     setFacingDirection(RightDirection);
-                    ensureTrack("run");
+                    moveHorizontallyTo(RightDirection, delta);
                 } else if (state.isPressed(ActionsFighter::Left)) {
-                    setFacingDirection(LeftDirection);
                     ensureTrack("run");
+                    setFacingDirection(LeftDirection);
+                    moveHorizontallyTo(LeftDirection, delta);
                 }
 
                 if (state.isPressed(ActionsFighter::Up)) {
                     ensureTrack("run");
+                    moveVerticallyTo(UpDirection, delta);
                 } else if (state.isPressed(ActionsFighter::Down)) {
                     ensureTrack("run");
+                    moveVerticallyTo(DownDirection, delta);
                 }
             }
         }
     }
+
 
 	if (m_lib == nullptr) return;
 	if (++m_trackFrame >= m_nextKeyframeTime) {
@@ -77,7 +82,7 @@ std::shared_ptr<Player::Library> Player::loadDirectory(const std::string &path)
     return lib;
 }
 
-void Player::setFacingDirection(Player::Direction direction)
+void Player::setFacingDirection(Player::HorizontalDirection direction)
 {
     if (direction == LeftDirection) {
         setScale(math::vec2d(-1, 1));
@@ -85,6 +90,20 @@ void Player::setFacingDirection(Player::Direction direction)
     }
 
     setScale(math::vec2d(1, 1));
+}
+
+const double Acceleration = 10.0;
+
+void Player::moveHorizontallyTo(Player::HorizontalDirection direction, double delta)
+{
+    double transformedAcceleration = Acceleration * ((direction == LeftDirection)? -1.0 : 1.0);
+    position().x += transformedAcceleration /** delta*/;
+}
+
+void Player::moveVerticallyTo(Player::VerticalDirection direction, double delta)
+{
+    double transformedAcceleration = Acceleration * ((direction == DownDirection)? -1.0 : 1.0);
+    position().y += transformedAcceleration /** delta*/;
 }
 
 bool Player::loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library> &lib)
