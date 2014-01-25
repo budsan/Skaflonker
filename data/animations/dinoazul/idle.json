@@ -1,0 +1,656 @@
+{
+    "fps": 60,
+    "frameCount": 30,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "stand1azul.png",
+                "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -28,
+                                "y": 0
+                            },
+                            "topLeft": {
+                                "x": -69,
+                                "y": -15
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 54,
+                                "y": 0
+                            },
+                            "topLeft": {
+                                "x": 28,
+                                "y": -53
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -21,
+                                "y": -13
+                            },
+                            "topLeft": {
+                                "x": -51,
+                                "y": -223
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -66,
+                                "y": -120
+                            },
+                            "topLeft": {
+                                "x": -87,
+                                "y": -148
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -52,
+                                "y": -145
+                            },
+                            "topLeft": {
+                                "x": -80,
+                                "y": -172
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -50,
+                                "y": -170
+                            },
+                            "topLeft": {
+                                "x": -71,
+                                "y": -200
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -65,
+                                "y": -193
+                            },
+                            "topLeft": {
+                                "x": -86,
+                                "y": -228
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 20,
+                                "y": -230
+                            },
+                            "topLeft": {
+                                "x": -82,
+                                "y": -274
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -37,
+                                "y": -270
+                            },
+                            "topLeft": {
+                                "x": -76,
+                                "y": -299
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 61,
+                                "y": -298
+                            },
+                            "topLeft": {
+                                "x": -68,
+                                "y": -316
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 28,
+                                "y": -307
+                            },
+                            "topLeft": {
+                                "x": -40,
+                                "y": -326
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 72,
+                                "y": -135
+                            },
+                            "topLeft": {
+                                "x": 24,
+                                "y": -300
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 38,
+                                "y": -268
+                            },
+                            "topLeft": {
+                                "x": -44,
+                                "y": -300
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 78,
+                                "y": -67
+                            },
+                            "topLeft": {
+                                "x": -37,
+                                "y": -236
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 79,
+                                "y": -45
+                            },
+                            "topLeft": {
+                                "x": 18,
+                                "y": -72
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 84,
+                                "y": -15
+                            },
+                            "topLeft": {
+                                "x": 57,
+                                "y": -45
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 114,
+                                "y": -9
+                            },
+                            "topLeft": {
+                                "x": 72,
+                                "y": -36
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 125,
+                                "y": -35
+                            },
+                            "topLeft": {
+                                "x": 100,
+                                "y": -55
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 127,
+                                "y": -51
+                            },
+                            "topLeft": {
+                                "x": 109,
+                                "y": -98
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 100,
+                                "y": -144
+                            },
+                            "topLeft": {
+                                "x": 71,
+                                "y": -180
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 121,
+                                "y": -131
+                            },
+                            "topLeft": {
+                                "x": 88,
+                                "y": -156
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 106,
+                                "y": -227
+                            },
+                            "topLeft": {
+                                "x": 79,
+                                "y": -262
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 93,
+                                "y": -269
+                            },
+                            "topLeft": {
+                                "x": 73,
+                                "y": -285
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 78,
+                                "y": -299
+                            },
+                            "topLeft": {
+                                "x": 58,
+                                "y": -315
+                            }
+                        }
+                    }
+                ],
+                "offset": {
+                    "x": -112,
+                    "y": -355
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "stand2azul.png",
+                "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -31,
+                                "y": -2
+                            },
+                            "topLeft": {
+                                "x": -63,
+                                "y": -14
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 52,
+                                "y": -3
+                            },
+                            "topLeft": {
+                                "x": 28,
+                                "y": -11
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 50,
+                                "y": -13
+                            },
+                            "topLeft": {
+                                "x": 34,
+                                "y": -48
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 78,
+                                "y": -36
+                            },
+                            "topLeft": {
+                                "x": 12,
+                                "y": -80
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -31,
+                                "y": -16
+                            },
+                            "topLeft": {
+                                "x": -49,
+                                "y": -78
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -51,
+                                "y": -115
+                            },
+                            "topLeft": {
+                                "x": -83,
+                                "y": -167
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -56,
+                                "y": -193
+                            },
+                            "topLeft": {
+                                "x": -83,
+                                "y": -217
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -67,
+                                "y": -114
+                            },
+                            "topLeft": {
+                                "x": -86,
+                                "y": -142
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -54,
+                                "y": -141
+                            },
+                            "topLeft": {
+                                "x": -78,
+                                "y": -161
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 71,
+                                "y": -158
+                            },
+                            "topLeft": {
+                                "x": -68,
+                                "y": -309
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -32,
+                                "y": -219
+                            },
+                            "topLeft": {
+                                "x": -80,
+                                "y": -257
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -48,
+                                "y": -262
+                            },
+                            "topLeft": {
+                                "x": -76,
+                                "y": -274
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 31,
+                                "y": -307
+                            },
+                            "topLeft": {
+                                "x": -39,
+                                "y": -316
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 92,
+                                "y": -258
+                            },
+                            "topLeft": {
+                                "x": 67,
+                                "y": -285
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 106,
+                                "y": -226
+                            },
+                            "topLeft": {
+                                "x": 78,
+                                "y": -252
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 81,
+                                "y": -76
+                            },
+                            "topLeft": {
+                                "x": -48,
+                                "y": -161
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 99,
+                                "y": -139
+                            },
+                            "topLeft": {
+                                "x": 78,
+                                "y": -170
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 114,
+                                "y": -125
+                            },
+                            "topLeft": {
+                                "x": 94,
+                                "y": -153
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 18,
+                                "y": -58
+                            },
+                            "topLeft": {
+                                "x": -37,
+                                "y": -86
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 109,
+                                "y": -22
+                            },
+                            "topLeft": {
+                                "x": 60,
+                                "y": -45
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 119,
+                                "y": -23
+                            },
+                            "topLeft": {
+                                "x": 108,
+                                "y": -78
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 117,
+                                "y": -68
+                            },
+                            "topLeft": {
+                                "x": 95,
+                                "y": -86
+                            }
+                        }
+                    }
+                ],
+                "offset": {
+                    "x": -111.57183225685618,
+                    "y": -355.65217391304344
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 14
+        }
+    ],
+    "origin": {
+        "x": 0,
+        "y": 0
+    }
+}

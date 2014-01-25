@@ -4,6 +4,8 @@
 #include "guyframework/input/input.h"
 #include "guyframework/input/keyboardlistener.h"
 
+#include "fighter.h"
+
 
 class Skaflonker : public Guy::Game, public Guy::FocusListener, public Guy::KeyboardListener
 {
@@ -29,11 +31,6 @@ protected:
 	void onKeyUp(wchar_t unicode, Guy::Keyboard::Key key, Guy::Keyboard::Mod mods);
 	void onKeyDown(wchar_t unicode, Guy::Keyboard::Key key, Guy::Keyboard::Mod mods);
 
-	void startTutorial();
-	void reset();
-
-	void playerHasJumped();
-	void playerHasAirJumped();
-	void playerHasDashed();
+	Fighter fighter;
 };
 

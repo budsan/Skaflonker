@@ -41,7 +41,7 @@ void Skaflonker::init()
 
 void Skaflonker::load()
 {
-
+	fighter.loadDirectory("data/animations/dinoazul");
 }
 
 void Skaflonker::unload()
@@ -82,5 +82,6 @@ void Skaflonker::onKeyDown(wchar_t unicode, Guy::Keyboard::Key key, Guy::Keyboar
 	(void) key;
 	(void) mods;
 }
+
 
 
