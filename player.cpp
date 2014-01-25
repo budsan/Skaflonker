@@ -26,29 +26,32 @@ void Player::update()
 {
 	Actions &state = *Actions::instance()[m_playerID];
 
+//    setFacingDirection(LeftDirection);
+
 //    ensureTrack("defend");
     if (m_currentTrack != trackID("attack")) {
         if (state.isDown(ActionsFighter::Attack)) {
             ensureTrack("attack");
-        }
-        else {
+        } else if (state.isPressed(ActionsFighter::Block)) {
+            ensureTrack("defend");
+        } else {
             if (!state.isPressed(ActionsFighter::Right) && !state.isPressed(ActionsFighter::Left)
                     && !state.isPressed(ActionsFighter::Up) && !state.isPressed(ActionsFighter::Down))
             {
                 ensureTrack("idle");
             } else {
                 if (state.isPressed(ActionsFighter::Right)) {
+                    setFacingDirection(RightDirection);
                     ensureTrack("run");
                 } else if (state.isPressed(ActionsFighter::Left)) {
+                    setFacingDirection(LeftDirection);
                     ensureTrack("run");
                 }
 
                 if (state.isPressed(ActionsFighter::Up)) {
                     ensureTrack("run");
-
                 } else if (state.isPressed(ActionsFighter::Down)) {
                     ensureTrack("run");
-
                 }
             }
         }
@@ -63,15 +66,25 @@ void Player::update()
 std::shared_ptr<Player::Library> Player::loadDirectory(const std::string &path)
 {
     std::shared_ptr<Library> lib = std::make_shared<Library>();
-    if (!loadTrackFile(path+"/idle.json","idle", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/attack.json","attack", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/run.json","run", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/lose.json","lose", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/defend.json","defend", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/throw.json","throw", lib)) return std::shared_ptr<Library>();
-    if (!loadTrackFile(path+"/victory.json","victory", lib)) return std::shared_ptr<Library>();
+    if (!loadTrackFile(path+"/idle.json", "idle", lib)) return std::shared_ptr<Library>();
+    if (!loadTrackFile(path+"/attack.json", "attack", lib)) return std::shared_ptr<Library>();
+    if (!loadTrackFile(path+"/run.json", "run", lib)) return std::shared_ptr<Library>();
+    if (!loadTrackFile(path+"/lose.json", "lose", lib)) return std::shared_ptr<Library>();
+    if (!loadTrackFile(path+"/defend.json", "defend", lib)) return std::shared_ptr<Library>();
+    if (!loadTrackFile(path+"/throw.json", "throw", lib)) return std::shared_ptr<Library>();
+    if (!loadTrackFile(path+"/victory.json", "victory", lib)) return std::shared_ptr<Library>();
 
-	return lib;
+    return lib;
+}
+
+void Player::setFacingDirection(Player::Direction direction)
+{
+    if (direction == LeftDirection) {
+        setScale(math::vec2d(-1, 1));
+        return;
+    }
+
+    setScale(math::vec2d(1, 1));
 }
 
 bool Player::loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library> &lib)
@@ -285,7 +298,7 @@ void Player::nextFrame()
 	}
 	else {
 		m_currentKeyframe = 0;
-        if (m_currentTrack != trackID("run"))
+        if (m_currentTrack != trackID("run") && m_currentTrack != trackID("defend"))
             ensureTrack("idle");
 		m_trackFrame = m_lib->tracks[m_currentTrack].keyframes[m_currentKeyframe].frame;
 	}

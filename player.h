@@ -12,6 +12,11 @@
 class Player : public Sprite
 {
 public:
+    enum Direction
+    {
+        LeftDirection,
+        RightDirection
+    };
 
 	struct Keyframe
 	{
@@ -58,6 +63,8 @@ public:
 	void drawParameters(Sprite::DrawParameters &params) override;
 
 	static std::shared_ptr<Library> loadDirectory(const std::string &path);
+
+    void setFacingDirection(Direction direction);
 
 private:
 	static bool loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library>& lib);
