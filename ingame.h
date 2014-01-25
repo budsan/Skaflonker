@@ -17,6 +17,7 @@ public:
 
 private:
 	void nextBackground();
+	std::shared_ptr<Player::Library> randomLibrary() const;
 
 	Guy::Camera2D camera;
 	math::vec2d cameraPos;

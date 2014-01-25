@@ -2,14 +2,18 @@
 
 #include "environment.h"
 #include <set>
+#include <time.h>
 
 const std::vector<std::string> Backgrounds{/*"background-1.png",*/ "background-2.png", "background-3.png"};
+const std::vector<std::string> PlayerLibraries{"data/animations/dinoazul", "data/animations/dinorojo", "data/animations/dinoverde",
+											  "data/animations/huevoazul", "data/animations/huevovermell", "data/animations/huevoverd"};
 
 Ingame::Ingame() : player(0), player2(1), m_currentBackground(0)
 {
 	m_shadowSprite.setFileName("shadow.png");
 	m_backgroundSprite.setScale(6.0);
 	nextBackground();
+	srand(time(nullptr));
 }
 
 void Ingame::update(double deltaTime)
@@ -20,17 +24,17 @@ void Ingame::update(double deltaTime)
 	if (m_accumulatedTime > 5.0) {
 		m_accumulatedTime = 0;
 		nextBackground();
+		player.setLibrary(randomLibrary());
+		player2.setLibrary(randomLibrary());
 	}
 }
 
 void Ingame::load()
 {
-	std::shared_ptr<Player::Library> dinoazul = Player::loadDirectory("data/animations/dinoazul");
-	player.setLibrary(dinoazul);
+	player.setLibrary(randomLibrary());
 	player.playTrack("idle");
 
-	std::shared_ptr<Player::Library> dinorojo = Player::loadDirectory("data/animations/huevoverd");
-	player2.setLibrary(dinorojo);
+	player2.setLibrary(randomLibrary());
 	player2.playTrack("idle");
 
 	camera.init();
@@ -88,4 +92,9 @@ void Ingame::nextBackground()
 {
 	m_currentBackground = (++m_currentBackground) % Backgrounds.size();
 	m_backgroundSprite.setFileName(Backgrounds.at(m_currentBackground));
+}
+
+std::shared_ptr<Player::Library> Ingame::randomLibrary() const
+{
+	return Player::loadDirectory(PlayerLibraries.at(std::rand() % PlayerLibraries.size()));
 }
