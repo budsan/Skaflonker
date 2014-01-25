@@ -70,6 +70,8 @@ private:
 	std::size_t m_nextKeyframeTime;
 	std::size_t m_trackFrame;
 
+//    std::size_t m_idleTrack;
+
 	void nextFrame();
 	void nextKeyframeTime();
 };

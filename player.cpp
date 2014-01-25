@@ -26,12 +26,12 @@ void Player::update()
 {
 	Actions &state = *Actions::instance()[m_playerID];
 
-	if (state.isPressed(ActionsFighter::Attack)) {
+    if (state.isDown(ActionsFighter::Attack)) {
 		ensureTrack("attack");
 	}
-	else {
-		ensureTrack("idle");
-	}
+//	else {
+//		ensureTrack("idle");
+//	}
 
 	if (m_lib == nullptr) return;
 	if (++m_trackFrame >= m_nextKeyframeTime) {
@@ -177,13 +177,15 @@ bool Player::setLibrary(std::shared_ptr<Library> _data)
 		return false;
 	}
 
+//    m_idleTrack = trackID("idle");
+
 	return true;
 }
 
 void Player::drawParameters(Sprite::DrawParameters &params)
 {
 	if (m_lib == nullptr) {
-		params.filename = nullptr;
+        params.filename = nullptr;
 		return;
 	}
 
@@ -257,6 +259,7 @@ void Player::nextFrame()
 	}
 	else {
 		m_currentKeyframe = 0;
+        ensureTrack("idle");
 		m_trackFrame = m_lib->tracks[m_currentTrack].keyframes[m_currentKeyframe].frame;
 	}
 
