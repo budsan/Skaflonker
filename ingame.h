@@ -4,6 +4,8 @@
 #include "graphics/camera2d.h"
 #include "standardsprite.h"
 
+class Box;
+
 class Ingame
 {
 public:
@@ -28,7 +30,7 @@ private:
 	StandardSprite m_shadowSprite;
 	StandardSprite m_backgroundSprite;
 
-//	std::vector<Box *> m_boxes;
+	std::vector<Box *> m_boxes;
 
 	double m_accumulatedTime;
 	int m_currentBackground;
