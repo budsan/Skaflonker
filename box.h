@@ -1,9 +1,9 @@
 #ifndef BOX_H
 #define BOX_H
 
-#include "standardsprite.h"
+#include "animatedsprite.h"
 
-class Box : public StandardSprite
+class Box : public AnimatedSprite
 {
 public:
 	Box();

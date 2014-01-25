@@ -1,4 +1,5 @@
 #include "ingame.h"
+#include "box.h"
 
 #include "environment.h"
 #include <set>
@@ -53,6 +54,10 @@ void Ingame::update(double deltaTime)
 		//STAPH
 	}
 
+	for(Box *box : m_boxes) {
+		box->update();
+	}
+
 	if (m_accumulatedTime > 5.0) {
 		m_accumulatedTime = 0;
 		nextBackground();
@@ -68,6 +73,8 @@ void Ingame::load()
 
 	player2.setLibrary(randomLibrary());
 	player2.playTrack("idle");
+
+	m_boxes.push_back(new Box);
 
 	camera.init();
 	camera.resizeScreen(1920, 1080);
@@ -126,11 +133,20 @@ void Ingame::draw()
 
 	m_backgroundSprite.draw();
 
+	for(Box *box : m_boxes) {
+		m_shadowSprite.setPosition(box->floorPosition());
+		m_shadowSprite.draw();
+	}
+
 	m_shadowSprite.setPosition(player.floorPosition());
 	m_shadowSprite.draw();
 
 	m_shadowSprite.setPosition(player2.floorPosition());
 	m_shadowSprite.draw();
+
+	for(Box *box : m_boxes) {
+		box->draw();
+	}
 
 	if (player.position().z > player2.position().z )
 	{

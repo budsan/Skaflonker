@@ -59,7 +59,7 @@ public:
 	bool playTrack(const std::string &name);
 	bool playTrack(std::size_t animID);
 
-	void drawParameters(Sprite::DrawParameters &params) override;
+	void drawParameters(Sprite::DrawParameters &params) override final;
 
 protected:
 	static bool loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library>& lib);
