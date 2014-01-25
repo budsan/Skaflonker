@@ -41,26 +41,28 @@ public:
 		std::map<std::string, std::size_t> trackNames;
 	};
 
-	Player();
-	Player(std::shared_ptr<Library> data);
+	Player(std::size_t m_playerID = 0);
 
 	virtual void update();
-
-	bool loadDirectory(const std::string &path);
 
 	std::size_t trackID(const std::string &name);
 
 	bool setLibrary(std::shared_ptr<Library> data);
+	std::shared_ptr<Library> library() { return m_lib; }
+
 	bool playTrack(const std::string &name);
 	bool playTrack(std::size_t animID);
 
 	void drawParameters(Sprite::DrawParameters &params) override;
 
+	static std::shared_ptr<Library> loadDirectory(const std::string &path);
+
 private:
-	bool loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library>& lib);
+	static bool loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library>& lib);
 
 	std::shared_ptr<Library> m_lib;
 
+	std::size_t m_playerID;
 	std::size_t m_currentTrack;
 	std::size_t m_currentKeyframe;
 	std::size_t m_nextKeyframeTime;

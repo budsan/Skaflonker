@@ -1,0 +1,30 @@
+{
+    "fps": 60,
+    "frameCount": 15,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "defendazul.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -172.97671812499993,
+                    "y": -297.68086374999984
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        }
+    ]
+}

@@ -3,6 +3,9 @@
 #include "guyframework/environment.h"
 #include "guyframework/debug.h"
 
+#include "action.h"
+#include "actionsfighter.h"
+
 #include <functional>
 #include <sstream>
 #include <ctime>
@@ -37,6 +40,19 @@ void Skaflonker::init()
     Guy::Environment &env = Guy::Environment::instance();
     env.setFrameRate(60, Guy::Environment::StableWithFrameSkipDeltaTime);
     env.screen().setMode(Guy::Screen::Mode(0, 0), false);
+
+    Guy::Input &in = env.input();
+    in.addFocusListener(this);
+
+    ActionsFighter* actionsFighterOne = new ActionsFighterOne();
+    in.keyboard().addListener(actionsFighterOne);
+
+    ActionsFighter* actionsFighterTwo = new ActionsFighterTwo();
+    in.keyboard().addListener(actionsFighterTwo);
+
+    std::vector<Actions*> &actions = Actions::instance();
+    actions.push_back(actionsFighterOne);
+    actions.push_back(actionsFighterTwo);
 }
 
 void Skaflonker::load()
@@ -48,7 +64,8 @@ void Skaflonker::load()
 
 	frames.setColor(Guy::rgba(0,0,0,1));
 
-	player.loadDirectory("data/animations/dinoazul");
+	std::shared_ptr<Player::Library> dinoazul = player.loadDirectory("data/animations/dinoazul");
+	player.setLibrary(dinoazul);
 	player.playTrack("idle");
 
 	camera.init();
@@ -65,6 +82,8 @@ void Skaflonker::update(double deltaTime)
 
 	frames.update(deltaTime);
 	player.update();
+
+	Actions::endOfFrameAll();
 }
 
 void Skaflonker::draw()

@@ -7,11 +7,12 @@
 #include <memory>
 #include <json/json.h>
 
-#include "graphics/texturemanager.h"
+#include "actionsfighter.h"
 
+#include "graphics/texturemanager.h"
 #include "debug.h"
 
-Player::Player()
+Player::Player(std::size_t m_playerID)
 	: Sprite(),
 	  m_currentTrack(0),
 	  m_currentKeyframe(0),
@@ -21,28 +22,28 @@ Player::Player()
 
 }
 
-Player::Player(std::shared_ptr<Library> _data)
-{
-	setLibrary(_data);
-}
-
 void Player::update()
 {
+	Actions &state = *Actions::instance()[m_playerID];
+
+	if (state.isDown(ActionsFighter::Attack)) {
+		playTrack("attack");
+	}
+
 	if (m_lib == nullptr) return;
 	if (++m_trackFrame >= m_nextKeyframeTime) {
 		nextFrame();
 	}
 }
 
-bool Player::loadDirectory(const std::string &path)
+std::shared_ptr<Player::Library> Player::loadDirectory(const std::string &path)
 {
 	std::shared_ptr<Library> lib = std::make_shared<Library>();
-	if (!loadTrackFile(path+"/idle.json","idle", lib)) return false;
-	if (!loadTrackFile(path+"/attack.json","attack", lib)) return false;
+	if (!loadTrackFile(path+"/idle.json","idle", lib)) return std::shared_ptr<Library>();
+	if (!loadTrackFile(path+"/attack.json","attack", lib)) return std::shared_ptr<Library>();
 
-	return setLibrary(lib);
+	return lib;
 }
-
 
 bool Player::loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library> &lib)
 {

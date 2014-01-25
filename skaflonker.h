@@ -37,6 +37,7 @@ protected:
 
 	Guy::FramesHUD frames;
 	Guy::Camera2D camera;
+
 	Player player;
 };
 

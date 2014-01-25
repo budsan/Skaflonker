@@ -1,25 +1,25 @@
 {
     "fps": 60,
-    "frameCount": 15,
+    "frameCount": 25,
     "keyFrames": [
         {
             "data": {
                 "customProperties": {
                 },
-                "fileName": "attack1azul.png",
+                "fileName": "ontheground1azul.png",
                 "hitBoxes": [
                 ],
                 "offset": {
-                    "x": -101.27588573720578,
-                    "y": -354.63564020100773
+                    "x": -240,
+                    "y": -346
                 },
                 "rect": {
                     "bottomRight": {
-                        "x": 256,
-                        "y": 355.41000000000003
+                        "x": 364,
+                        "y": 355.5
                     },
                     "topLeft": {
-                        "x": -0.5,
+                        "x": 0,
                         "y": 0
                     }
                 }
@@ -30,25 +30,25 @@
             "data": {
                 "customProperties": {
                 },
-                "fileName": "attack2azul.png",
+                "fileName": "ontheground2azul.png",
                 "hitBoxes": [
                 ],
                 "offset": {
-                    "x": -101.02032623143796,
-                    "y": -354.29442552775913
+                    "x": -187.79499999999996,
+                    "y": -427.16749999999979
                 },
                 "rect": {
                     "bottomRight": {
-                        "x": 256,
-                        "y": 355.41000000000003
+                        "x": 386,
+                        "y": 436.5
                     },
                     "topLeft": {
-                        "x": -0.5,
+                        "x": 0,
                         "y": 0
                     }
                 }
             },
-            "frame": 7
+            "frame": 13
         }
     ]
 }

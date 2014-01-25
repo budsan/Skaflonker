@@ -1,0 +1,78 @@
+{
+    "fps": 60,
+    "frameCount": 30,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "ganchoverde1azul.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -121.24096116134795,
+                    "y": -355.86593526307638
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "ganchoverde2azul.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -114.05222699481247,
+                    "y": -355.86556080909276
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 9
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "ganchoverde1azul.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -121.82530318405004,
+                    "y": -355.58290349312051
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 24
+        }
+    ]
+}

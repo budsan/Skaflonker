@@ -1,0 +1,102 @@
+{
+    "fps": 60,
+    "frameCount": 60,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "sostenerazul.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -141,
+                    "y": -355
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "jumpazul.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -141.80373548154492,
+                    "y": -379.67622817078416
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 356
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 7
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "jumpazul.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -104.94037499999996,
+                    "y": -336.11337499999991
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 356
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 14
+        },
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "loseazul.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -95.993852443082289,
+                    "y": -345.52117512155286
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355.5
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 22
+        }
+    ]
+}

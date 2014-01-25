@@ -11,12 +11,16 @@ SOURCES += \
     json/lib_json/json_value.cpp \
     json/lib_json/json_writer.cpp \
     sprite.cpp \
-    player.cpp
+    player.cpp \
+    action.cpp \
+    actionsfighter.cpp
 
 HEADERS += \
     skaflonker.h \
     sprite.h \
-    player.h
+    player.h \
+    action.h \
+    actionsfighter.h
 
 DESTDIR = $$PWD/
 
