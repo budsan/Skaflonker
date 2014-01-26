@@ -27,7 +27,7 @@ void Player::update()
 	const double Acceleration = 4.0;
 	const double Friction = 1.0;
 	const double MaxVelocity = 15.0;
-	const double JumpVelocity = 50.0;
+	const double JumpVelocity = 60.0;
 	const double Gravity = 3.0;
 
 	Actions &state = *Actions::instance()[m_playerID];
@@ -38,22 +38,25 @@ void Player::update()
 	double currentMaxVel = MaxVelocity;
 	double currentGrav   = Gravity;
 
-
 	switch(m_state)
 	{
 	case IdleState:
 		ensureTrack("idle");
-		if (state.isDown(ActionsFighter::Attack)) {
-			m_state = AttackState;
-		} else if (state.isPressed(ActionsFighter::Block)) {
-			m_state = DefendState;
-		} else if (state.isPressed(ActionsFighter::Jump)) {
-			m_velocity.y = JumpVelocity;
-			m_state = JumpState;
-		}
-		else if (state.isPressed(ActionsFighter::Right) ^ state.isPressed(ActionsFighter::Left) ||
-			 state.isPressed(ActionsFighter::Up   ) ^ state.isPressed(ActionsFighter::Down)) {
+
+		if (state.isPressed(ActionsFighter::Right) ^ state.isPressed(ActionsFighter::Left) ||
+		    state.isPressed(ActionsFighter::Up   ) ^ state.isPressed(ActionsFighter::Down)) {
 			m_state = RunState;
+		}
+		else
+		{
+			if (state.isDown(ActionsFighter::Attack)) {
+				m_state = AttackState;
+			} else if (state.isPressed(ActionsFighter::Block)) {
+				m_state = DefendState;
+			} else if (state.isPressed(ActionsFighter::Jump)) {
+				m_velocity.y = JumpVelocity;
+				m_state = JumpState;
+			}
 		}
 		break;
 	case AttackState:
@@ -64,6 +67,22 @@ void Player::update()
 		break;
 	case JumpState:
 		ensureTrack("jump");
+		currentAcc = currentFri = 0;
+		currentMaxVel = JumpVelocity / 2;
+
+		if (state.isDown(ActionsFighter::Attack)) {
+			m_state = AirAttackState;
+		}
+
+		if (position().y < 0.1 && m_velocity.y <= 0)
+			m_state = StandUpState;
+
+		break;
+	case AirAttackState:
+		ensureTrack("attack");
+		currentAcc = currentFri = 0;
+		currentMaxVel = JumpVelocity;
+
 		if (position().y < 0.1 && m_velocity.y <= 0)
 			m_state = StandUpState;
 
@@ -107,6 +126,9 @@ void Player::update()
 			m_velocity.x = JumpVelocity * facingDirection.x;
 			m_velocity.y = JumpVelocity;
 			m_velocity.z = JumpVelocity * facingDirection.z;
+
+			currentAcc = currentFri = 0;
+			currentMaxVel = JumpVelocity / 2;
 			m_state = JumpState;
 		}
 
@@ -121,29 +143,28 @@ void Player::update()
 		m_velocity += facingDirection.normalized() * currentAcc;
 	}
 
+	m_velocity.y -= currentGrav;
 	position() += m_velocity;
 
-	if (position().y < 0.1) {
+	if (position().y < 0.1)
 		position().y = 0;
 
-		if (m_velocity.x > 0.0) {
-			m_velocity.x = std::max(0.0, m_velocity.x - currentFri);
-		}
-		else {
-			m_velocity.x = std::min(0.0, m_velocity.x + currentFri);
-		}
-		m_velocity.x = std::max(std::min(m_velocity.x, currentMaxVel), -currentMaxVel);
-
-		if (m_velocity.z > 0.0) {
-			m_velocity.z = std::max(0.0, m_velocity.z - currentFri);
-		}
-		else {
-			m_velocity.z = std::min(0.0, m_velocity.z + currentFri);
-		}
-		m_velocity.z = std::max(std::min(m_velocity.z, currentMaxVel), -currentMaxVel);
-	} else {
-		m_velocity.y -= currentGrav;
+	if (m_velocity.x > 0.0) {
+		m_velocity.x = std::max(0.0, m_velocity.x - currentFri);
 	}
+	else {
+		m_velocity.x = std::min(0.0, m_velocity.x + currentFri);
+	}
+	m_velocity.x = std::max(std::min(m_velocity.x, currentMaxVel), -currentMaxVel);
+
+	if (m_velocity.z > 0.0) {
+		m_velocity.z = std::max(0.0, m_velocity.z - currentFri);
+	}
+	else {
+		m_velocity.z = std::min(0.0, m_velocity.z + currentFri);
+	}
+	m_velocity.z = std::max(std::min(m_velocity.z, currentMaxVel), -currentMaxVel);
+
 
 	AnimatedSprite::update();
 }
@@ -204,19 +225,27 @@ void Player::onCollisionBottom()
 
 void Player::currentTrackFinished()
 {
+	Actions &state = *Actions::instance()[m_playerID];
 	switch(m_state)
 	{
-	case IdleState: break;
+	case IdleState:
+		break;
 	case AttackState:
 		m_state = IdleState;
 		break;
 	case DefendState:
-		m_state = IdleState;
+		if (!state.isPressed(ActionsFighter::Block))
+			m_state = IdleState;
 		break;
-	case JumpState: break;
+	case JumpState:
+		break;
+	case AirAttackState:
+		m_state = JumpState;
+		break;
 	case StandUpState:
 		m_state = IdleState;
 		break;
-	case RunState: break;
+	case RunState:
+		break;
 	}
 }

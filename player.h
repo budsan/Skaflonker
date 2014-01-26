@@ -48,6 +48,7 @@ private:
 		AttackState,
 		DefendState,
 		JumpState,
+		AirAttackState,
 		StandUpState,
 		RunState
 	};
