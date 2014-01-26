@@ -18,7 +18,9 @@ SOURCES += \
     standardsprite.cpp \
     box.cpp \
     animatedsprite.cpp \
-    splash.cpp
+    splash.cpp \
+    environmentevent.cpp \
+    lavaevent.cpp
 
 HEADERS += \
     skaflonker.h \
@@ -30,7 +32,9 @@ HEADERS += \
     standardsprite.h \
     box.h \
     animatedsprite.h \
-    splash.h
+    splash.h \
+    environmentevent.h \
+    lavaevent.h
 
 DESTDIR = $$PWD/
 

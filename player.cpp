@@ -13,8 +13,11 @@
 #include "debug.h"
 #include "standardsprite.h"
 
+constexpr int MaxHealth{100};
+
 Player::Player(std::size_t playerID)
-	: m_playerID(playerID)
+	: m_playerID(playerID),
+	  m_health(MaxHealth)
 {
 }
 
@@ -133,6 +136,14 @@ std::shared_ptr<Player::Library> Player::loadDirectory(const std::string &path)
 	loadTrackFile(path+"/victory.json", "victory", lib);
 
 	return lib;
+}
+
+void Player::dealDamage(int damage)
+{
+	m_health = std::max(0, m_health - std::abs(damage));
+	if (m_health == 0) {
+		// Player just dead
+	}
 }
 
 void Player::setFacingDirection(Player::HorizontalDirection direction)

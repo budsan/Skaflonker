@@ -8,6 +8,7 @@
 #include <time.h>
 #include <algorithm>
 #include "sprite.h"
+#include "lavaevent.h"
 
 const std::vector<std::string> Backgrounds {
 //	"background-1.png",
@@ -32,7 +33,12 @@ constexpr double BackgroundScale{6.0};
 const math::vec2d BackgroundSizeScaled = BackgroundSize * BackgroundScale;
 constexpr std::size_t MaxBoxAmount{10};
 
-Ingame::Ingame(Skaflonker &parent) : parent(parent), player(0), player2(1), m_currentBackground(0)
+Ingame::Ingame(Skaflonker& parent)
+	: parent(parent),
+	  player(0),
+	  player2(1),
+	  m_currentBackground(0),
+	  m_environmentEvent(nullptr)
 {
 	m_shadowSprite.setFileName("shadow.png");
 	m_backgroundSprite.setScale(BackgroundScale);
@@ -94,6 +100,10 @@ void Ingame::update(double deltaTime)
 		nextBackground();
 		//player.setLibrary(randomLibrary());
 		//player2.setLibrary(randomLibrary());
+	}
+
+	if (m_environmentEvent && m_environmentEvent->isExpired()) {
+		changeToRandomEnvironmentEvent();
 	}
 }
 
@@ -218,6 +228,15 @@ void Ingame::nextBackground()
 {
 	m_currentBackground = (++m_currentBackground) % Backgrounds.size();
 	m_backgroundSprite.setFileName(Backgrounds.at(m_currentBackground));
+}
+
+void Ingame::changeToRandomEnvironmentEvent()
+{
+	if (m_environmentEvent) {
+		delete m_environmentEvent;
+	}
+
+	m_environmentEvent = new LavaEvent;
 }
 
 std::shared_ptr<Player::Library> Ingame::randomLibrary() const

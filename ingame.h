@@ -6,6 +6,7 @@
 
 class Box;
 class Skaflonker;
+class EnvironmentEvent;
 
 class Ingame
 {
@@ -22,6 +23,7 @@ public:
 
 private:
 	void nextBackground();
+	void changeToRandomEnvironmentEvent();
 	std::shared_ptr<Player::Library> randomLibrary() const;
 
 	Box *createRandomBox() const;
@@ -38,6 +40,7 @@ private:
 	StandardSprite m_backgroundSprite;
 
 	std::vector<Box *> m_boxes;
+	EnvironmentEvent *m_environmentEvent;
 
 	double m_accumulatedTime;
 	int m_currentBackground;
