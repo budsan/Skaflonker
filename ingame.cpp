@@ -36,26 +36,24 @@ Ingame::Ingame() : player(0), player2(1), m_currentBackground(0)
 	srand(time(nullptr));
 }
 
-bool clampWorld(math::vec3d& pos)
+void worldCollision(Player& player)
 {
-	bool clamped = false;
+	math::vec3d& pos = player.position();
 	if (pos.x < -4600) {
 		pos.x = -4600;
-		clamped = true;
+		player.onCollisionLeft();
 	} else if (pos.x > 4600) {
 		pos.x = 4600;
-		clamped = true;
+		player.onCollisionRight();
 	}
 
 	if (pos.z < -5200) {
 		pos.z = -5200;
-		clamped = true;
+		player.onCollisionBottom();
 	} else if (pos.z > 800) {
 		pos.z = 800;
-		clamped = true;
+		player.onCollisionTop();
 	}
-
-	return clamped;
 }
 
 void Ingame::update(double deltaTime)
@@ -64,15 +62,8 @@ void Ingame::update(double deltaTime)
 	player.update();
 	player2.update();
 
-	if (clampWorld(player.position()))
-	{
-		//STAPH
-	}
-
-	if (clampWorld(player2.position()))
-	{
-		//STAPH
-	}
+	worldCollision(player);
+	worldCollision(player2);
 
 	for (Box *box : m_boxes) {
 		box->update();

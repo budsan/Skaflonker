@@ -117,6 +117,26 @@ void Player::setFacingDirection(Player::HorizontalDirection direction)
 	setScale(math::vec2d(1, 1));
 }
 
+void Player::onCollisionLeft()
+{
+	m_velocity.x = 0;
+}
+
+void Player::onCollisionRight()
+{
+	m_velocity.x = 0;
+}
+
+void Player::onCollisionTop()
+{
+	m_velocity.y = 0;
+}
+
+void Player::onCollisionBottom()
+{
+	m_velocity.y = 0;
+}
+
 void Player::currentTrackFinished()
 {
 	if (currentTrack() != trackID("run") && currentTrack() != trackID("defend"))

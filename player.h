@@ -31,6 +31,12 @@ public:
 
 	void setFacingDirection(HorizontalDirection direction);
 
+	void onCollisionLeft();
+	void onCollisionRight();
+
+	void onCollisionTop();
+	void onCollisionBottom();
+
 	static std::shared_ptr<Player::Library> loadDirectory(const std::string &path);
 
 private:
