@@ -188,6 +188,18 @@ void AnimatedSprite::drawParameters(Sprite::DrawParameters &params)
 	params.cy = key.origin.y;
 }
 
+bool AnimatedSprite::hitBoxesHit(const std::vector<math::bbox2i> &hitBoxesA, const std::vector<math::bbox2i> &hitBoxesB)
+{
+	for (const auto &a : hitBoxesA) {
+		for (const auto &b : hitBoxesB) {
+			if (hit(a, b)) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 std::size_t AnimatedSprite::trackID(const std::string &name)
 {
 	if (m_lib == nullptr)

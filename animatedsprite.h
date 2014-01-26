@@ -59,7 +59,12 @@ public:
 	bool playTrack(const std::string &name);
 	bool playTrack(std::size_t animID);
 
+	const std::vector<math::bbox2i> &damageHitBoxes() const {return m_lib->tracks[m_currentTrack].keyframes.at(m_currentKeyframe).damage;}
+	const std::vector<math::bbox2i> &bodyHitBoxes() const {return m_lib->tracks[m_currentTrack].keyframes.at(m_currentKeyframe).body;}
+
 	void drawParameters(Sprite::DrawParameters &params) override final;
+
+	static bool hitBoxesHit(const std::vector<math::bbox2i> &hitBoxesA, const std::vector<math::bbox2i> &hitBoxesB);
 
 protected:
 	static bool loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library>& lib);

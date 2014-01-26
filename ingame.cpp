@@ -72,6 +72,13 @@ void Ingame::update(double deltaTime)
 	player.update();
 	player2.update();
 
+	// If players collide with eachother
+	if (Player::hitBoxesHit(player.bodyHitBoxes(), player2.bodyHitBoxes())) {
+		math::vec2d center = (player.floorPosition() + player2.floorPosition()) / 2.0;
+		std::cout << "Colission: " << center.x << ", " << center.y << std::endl;
+	}
+
+	// If players collide with world boundaries
 	worldCollision(player);
 	worldCollision(player2);
 
@@ -119,7 +126,7 @@ void Ingame::load()
 	player2.setFacingDirection(Player::RightDirection);
 	player.setPosition(math::vec3d(-PlayerSeparation, 2000.0, 0.0));
 
-	player2.setLibrary(PlayerLibraries[3]);
+	player2.setLibrary(PlayerLibraries[0]);
 	player2.playTrack("idle");
 	player2.setFacingDirection(Player::LeftDirection);
 	player2.setPosition(math::vec3d(PlayerSeparation, 2000.0, 0.0));

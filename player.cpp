@@ -31,33 +31,33 @@ void Player::update()
 
 	Actions &state = *Actions::instance()[m_playerID];
 
-	if (currentTrack() != trackID("idle"))
-	{
-		ensureTrack("idle");
+//	if (currentTrack() != trackID("idle"))
+//	{
+//		ensureTrack("idle");
 
-		if (state.isDown(ActionsFighter::Attack)) {
-			ensureTrack("attack");
-		} else if (state.isPressed(ActionsFighter::Block)) {
-			ensureTrack("defend");
-		} else if (state.isPressed(ActionsFighter::Jump)) {
-			m_velocity.y = JumpVelocity;
-			ensureTrack("Jump");
-		}
-	}
-	else if (currentTrack() != trackID("jump"))
-	{
-		if (position().y < 0.1) {
-			ensureTrack("standing");
-		}
-	}
-	else if (currentTrack() != trackID("standing"))
-	{
+//		if (state.isDown(ActionsFighter::Attack)) {
+//			ensureTrack("attack");
+//		} else if (state.isPressed(ActionsFighter::Block)) {
+//			ensureTrack("defend");
+//		} else if (state.isPressed(ActionsFighter::Jump)) {
+//			m_velocity.y = JumpVelocity;
+//			ensureTrack("Jump");
+//		}
+//	}
+//	else if (currentTrack() != trackID("jump"))
+//	{
+//		if (position().y < 0.1) {
+//			ensureTrack("standing");
+//		}
+//	}
+//	else if (currentTrack() != trackID("standing"))
+//	{
 
-	}
+//	}
 
-	/*
+
 	// Uncomment the line below to make jumps more real :(
-	if (currentTrack() != trackID("attack") && position().y < 0.1) {
+	if (currentTrack() != trackID("attack") /*&& position().y < 0.1*/) {
 		if (state.isDown(ActionsFighter::Attack)) {
 			ensureTrack("attack");
 		} else if (state.isPressed(ActionsFighter::Block)) {
@@ -93,7 +93,6 @@ void Player::update()
 			}
 		}
 	}
-	*/
 
 	position() += m_velocity;
 
