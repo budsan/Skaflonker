@@ -62,7 +62,7 @@ public:
 	std::vector<math::bbox3i> damageHitBoxes() const;
 	std::vector<math::bbox3i> bodyHitBoxes() const;
 
-	void drawParameters(Sprite::DrawParameters &params) override final;
+	virtual void drawParameters(Sprite::DrawParameters &params) override;
 
 	static bool hitBoxesHit(const std::vector<math::bbox3i> &hitBoxesA, const std::vector<math::bbox3i> &hitBoxesB);
 

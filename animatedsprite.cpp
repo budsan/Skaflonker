@@ -258,6 +258,18 @@ std::vector<math::bbox3i> AnimatedSprite::damageHitBoxes() const {
 
 	std::vector<math::bbox3i> hitBoxes = m_lib->tracks[m_currentTrack].keyframes.at(m_currentKeyframe).damage;
 	for (math::bbox3i &hitBox : hitBoxes) {
+		auto sc = scale();
+		auto old = hitBox;
+
+		old.min.x *= sc.x;
+		old.min.y *= sc.y;
+		old.max.x *= sc.x;
+		old.max.y *= sc.y;
+
+		hitBox.clear();
+		hitBox.update(old.min);
+		hitBox.update(old.max);
+
 		hitBox.min += position();
 		hitBox.max += position();
 	}

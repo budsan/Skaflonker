@@ -18,12 +18,18 @@ constexpr int MaxHealth{100};
 Player::Player(std::size_t playerID)
 	: m_playerID(playerID),
 	  m_health(MaxHealth),
-	  m_state(IdleState)
+	  m_state(IdleState),
+	  hitFramesRemaining(0.0)
 {
 }
 
 void Player::update()
 {
+	if (hitFramesRemaining > 0) {
+		--hitFramesRemaining;
+		return;
+	}
+
 	const double Acceleration = 4.0;
 	const double Friction = 1.0;
 	const double MaxVelocity = 15.0;
@@ -37,8 +43,6 @@ void Player::update()
 	double currentFri    = Friction;
 	double currentMaxVel = MaxVelocity;
 	double currentGrav   = Gravity;
-
-
 
 	switch(m_state)
 	{
@@ -195,14 +199,40 @@ void Player::dealDamage(int damage)
 	}
 }
 
-void Player::onDamageTaken()
+void Player::onDamageTaken(const Player &from)
+{
+	hitFramesRemaining = 10;
+
+	switch(m_state)
+	{
+	case DefendState:
+		break;
+	case JumpState:
+		break;
+	case AirAttackState:
+		m_state = JumpState;
+		break;
+	case StandUpState:
+		m_state = IdleState;
+		break;
+	case RunState:
+		break;
+	}
+}
+
+void Player::onDamageGiven(const Player &to)
 {
 
 }
 
-void Player::onDamageGiven()
+void Player::drawParameters(Sprite::DrawParameters &params)
 {
+	AnimatedSprite::drawParameters(params);
 
+	if (hitFramesRemaining>0) {
+		params.cx += (rand()%20)-10;
+		params.cy += (rand()%20)-10;
+	}
 }
 
 void Player::setFacingDirection(Player::HorizontalDirection direction)

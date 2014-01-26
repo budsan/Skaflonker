@@ -42,8 +42,8 @@ public:
 
 	void dealDamage(int damage);
 
-	void onDamageTaken();
-	void onDamageGiven();
+	void onDamageTaken(const Player &from);
+	void onDamageGiven(const Player &to);
 
 private:
 	enum {
@@ -60,6 +60,7 @@ private:
 
 	std::size_t m_playerID;
 	math::vec3d m_velocity;
+	int hitFramesRemaining;
 
 	//std::size_t m_idleTrack;
 
@@ -67,6 +68,8 @@ private:
 
 	void nextFrame();
 	void nextKeyframeTime();
+
+	void drawParameters(Sprite::DrawParameters &params) override final;
 
 	// AnimatedSprite interface
 protected:

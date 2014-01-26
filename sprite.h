@@ -20,8 +20,8 @@ public:
 
 	void setRotation(double value);
 
-	math::vec2d scale() { return m_scale; }
-	double rotation()  { return m_rotate; }
+	math::vec2d scale() const { return m_scale; }
+	double rotation() const { return m_rotate; }
 
 	const math::vec3d &position() const { return m_pos;}
 	void setPosition(const math::vec3d &_position) {m_pos = _position;}

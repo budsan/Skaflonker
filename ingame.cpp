@@ -72,6 +72,7 @@ void Ingame::update(double deltaTime)
 
 	// If players collide with eachother
 //	std::cout << player.bodyHitBoxes().size() << ", " << player2.bodyHitBoxes().size() << std::endl;
+	/*
 	if (Player::hitBoxesHit(player.bodyHitBoxes(), player2.bodyHitBoxes())) {
 		math::vec2d a = player.floorPosition() - player2.floorPosition();
 		a.normalize();
@@ -79,15 +80,16 @@ void Ingame::update(double deltaTime)
 		player.position() += math::vec3d(a.x, 0, a.y);
 		player2.position() -= math::vec3d(a.x, 0, a.y);
 	}
+	*/
 
 	if (Player::hitBoxesHit(player.damageHitBoxes(), player2.bodyHitBoxes())) {
-		player.onDamageGiven();
-		player2.onDamageTaken();
+		player.onDamageGiven(player2);
+		player2.onDamageTaken(player);
 	}
 
 	if (Player::hitBoxesHit(player2.damageHitBoxes(), player.bodyHitBoxes())) {
-		player2.onDamageTaken();
-		player.onDamageTaken();
+		player2.onDamageGiven(player);
+		player.onDamageTaken(player2);
 	}
 
 	// If players collide with world boundaries
