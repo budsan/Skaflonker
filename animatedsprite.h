@@ -27,8 +27,8 @@ public:
 		math::vec2d friction;
 		math::vec2d maxVel;
 
-		std::vector<math::bbox2i> body;
-		std::vector<math::bbox2i> damage;
+		std::vector<math::bbox3i> body;
+		std::vector<math::bbox3i> damage;
 	};
 
 	struct Track
@@ -59,12 +59,12 @@ public:
 	bool playTrack(const std::string &name);
 	bool playTrack(std::size_t animID);
 
-	const std::vector<math::bbox2i> &damageHitBoxes() const {return m_lib->tracks[m_currentTrack].keyframes.at(m_currentKeyframe).damage;}
-	const std::vector<math::bbox2i> &bodyHitBoxes() const {return m_lib->tracks[m_currentTrack].keyframes.at(m_currentKeyframe).body;}
+	std::vector<math::bbox3i> damageHitBoxes() const;
+	std::vector<math::bbox3i> bodyHitBoxes() const;
 
 	void drawParameters(Sprite::DrawParameters &params) override final;
 
-	static bool hitBoxesHit(const std::vector<math::bbox2i> &hitBoxesA, const std::vector<math::bbox2i> &hitBoxesB);
+	static bool hitBoxesHit(const std::vector<math::bbox3i> &hitBoxesA, const std::vector<math::bbox3i> &hitBoxesB);
 
 protected:
 	static bool loadTrackFile(const std::string& file, const std::string& name, std::shared_ptr<Library>& lib);
