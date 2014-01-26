@@ -28,7 +28,7 @@ const math::vec2d ViewSize{1920, 1080};
 const math::vec2d BackgroundSize{1600, 900};
 constexpr double BackgroundScale{6.0};
 const math::vec2d BackgroundSizeScaled = BackgroundSize * BackgroundScale;
-constexpr std::size_t MaxBoxAmount{100};
+constexpr std::size_t MaxBoxAmount{10};
 
 Ingame::Ingame() : player(0), player2(1), m_currentBackground(0)
 {
