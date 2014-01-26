@@ -53,7 +53,7 @@ void Skaflonker::init()
 {
 	Guy::Environment &env = Guy::Environment::instance();
 	env.setFrameRate(60, Guy::Environment::StableWithFrameSkipDeltaTime);
-	env.screen().setMode(Guy::Screen::Mode(0, 0), false);
+	env.screen().setMode(Guy::Screen::Mode(800, 600), false);
 
 	Guy::Input &in = env.input();
 	in.addFocusListener(this);

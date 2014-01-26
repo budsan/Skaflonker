@@ -126,9 +126,9 @@ bool AnimatedSprite::loadTrackFile(const std::string& file, const std::string& n
 			const Json::Value bottomRight = rect["bottomRight"];
 			const Json::Value topLeft     = rect["topLeft"];
 
-			math::bbox2i box;
-			box.update(math::vec2i(bottomRight.get("x", "UTF-8").asInt(), bottomRight.get("y", "UTF-8").asInt()));
-			box.update(math::vec2i(    topLeft.get("x", "UTF-8").asInt(),     topLeft.get("y", "UTF-8").asInt()));
+			math::bbox3i box;
+			box.update(math::vec3i(bottomRight.get("x", "UTF-8").asInt(), bottomRight.get("y", "UTF-8").asInt(), -100));
+			box.update(math::vec3i(    topLeft.get("x", "UTF-8").asInt(),     topLeft.get("y", "UTF-8").asInt(),  100));
 
 			if (hitBox.get("group", "UTF-8").asString() == std::string("body")) {
 				key.body.push_back(box);
@@ -188,8 +188,9 @@ void AnimatedSprite::drawParameters(Sprite::DrawParameters &params)
 	params.cy = key.origin.y;
 }
 
-bool AnimatedSprite::hitBoxesHit(const std::vector<math::bbox2i> &hitBoxesA, const std::vector<math::bbox2i> &hitBoxesB)
+bool AnimatedSprite::hitBoxesHit(const std::vector<math::bbox3i> &hitBoxesA, const std::vector<math::bbox3i> &hitBoxesB)
 {
+
 	for (const auto &a : hitBoxesA) {
 		for (const auto &b : hitBoxesB) {
 			if (hit(a, b)) {
@@ -248,6 +249,32 @@ bool AnimatedSprite::playTrack(std::size_t animID)
 	nextKeyframeTime();
 
 	return true;
+}
+
+std::vector<math::bbox3i> AnimatedSprite::damageHitBoxes() const {
+	if (!m_lib) {
+		return std::vector<math::bbox3i>();
+	}
+
+	std::vector<math::bbox3i> hitBoxes = m_lib->tracks[m_currentTrack].keyframes.at(m_currentKeyframe).damage;
+	for (math::bbox3i &hitBox : hitBoxes) {
+		hitBox.min += position();
+		hitBox.max += position();
+	}
+	return hitBoxes;
+}
+
+std::vector<math::bbox3i> AnimatedSprite::bodyHitBoxes() const {
+	if (!m_lib) {
+		return std::vector<math::bbox3i>();
+	}
+
+	std::vector<math::bbox3i> hitBoxes = m_lib->tracks[m_currentTrack].keyframes.at(m_currentKeyframe).body;
+	for (math::bbox3i &hitBox : hitBoxes) {
+		hitBox.min += position();
+		hitBox.max += position();
+	}
+	return hitBoxes;
 }
 
 void AnimatedSprite::nextFrame()

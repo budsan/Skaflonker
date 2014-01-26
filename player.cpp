@@ -195,6 +195,16 @@ void Player::dealDamage(int damage)
 	}
 }
 
+void Player::onDamageTaken()
+{
+
+}
+
+void Player::onDamageGiven()
+{
+
+}
+
 void Player::setFacingDirection(Player::HorizontalDirection direction)
 {
 	if (direction == LeftDirection) {

@@ -25,8 +25,6 @@ const std::vector<std::string> PlayerLibrariesPath {
 	"data/animations/huevoverd"
 };
 
-std::vector<std::shared_ptr<Player::Library>> PlayerLibraries;
-
 const math::vec2d ViewSize{1920, 1080};
 const math::vec2d BackgroundSize{1600, 900};
 constexpr double BackgroundScale{6.0};
@@ -73,9 +71,23 @@ void Ingame::update(double deltaTime)
 	player2.update();
 
 	// If players collide with eachother
+//	std::cout << player.bodyHitBoxes().size() << ", " << player2.bodyHitBoxes().size() << std::endl;
 	if (Player::hitBoxesHit(player.bodyHitBoxes(), player2.bodyHitBoxes())) {
-		math::vec2d center = (player.floorPosition() + player2.floorPosition()) / 2.0;
-		std::cout << "Colission: " << center.x << ", " << center.y << std::endl;
+		math::vec2d a = player.floorPosition() - player2.floorPosition();
+		a.normalize();
+		a = a * 100.0;
+		player.position() += math::vec3d(a.x, 0, a.y);
+		player2.position() -= math::vec3d(a.x, 0, a.y);
+	}
+
+	if (Player::hitBoxesHit(player.damageHitBoxes(), player2.bodyHitBoxes())) {
+		player.onDamageGiven();
+		player2.onDamageTaken();
+	}
+
+	if (Player::hitBoxesHit(player2.damageHitBoxes(), player.bodyHitBoxes())) {
+		player2.onDamageTaken();
+		player.onDamageTaken();
 	}
 
 	// If players collide with world boundaries

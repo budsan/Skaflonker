@@ -44,4 +44,6 @@ private:
 
 	double m_accumulatedTime;
 	int m_currentBackground;
+
+	std::vector<std::shared_ptr<Player::Library>> PlayerLibraries;
 };
