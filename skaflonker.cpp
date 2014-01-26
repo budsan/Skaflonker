@@ -15,7 +15,7 @@
 
 Skaflonker theGame;
 
-Skaflonker::Skaflonker() : m_state(GameState), splash(*this), game(*this)
+Skaflonker::Skaflonker() : m_state(SplashState), splash(*this), game(*this)
 {
 
 }

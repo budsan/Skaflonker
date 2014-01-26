@@ -235,6 +235,7 @@ void Player::onDamageTaken(const Player &from)
 		break;
 	case LaunchedState:
 		m_state = LaunchedInitState;
+		setFacingDirection(from.scale().x > 0 ? LeftDirection : RightDirection);
 		ensureTrack("launchup");
 		hitFramesRemaining = 5;
 		break;
@@ -249,10 +250,12 @@ void Player::onDamageTaken(const Player &from)
 			case LauncherState:
 			case AirAttackState:
 				m_state = LaunchedInitState;
+				setFacingDirection(from.scale().x > 0 ? LeftDirection : RightDirection);
 				ensureTrack("launchup");
 				hitFramesRemaining = 5;
 				break;
 		}
+		break;
 	}
 }
 
