@@ -15,7 +15,7 @@
 
 Skaflonker theGame;
 
-Skaflonker::Skaflonker()
+Skaflonker::Skaflonker() : m_state(SplashState), splash(*this), game(*this)
 {
 
 }
@@ -33,6 +33,20 @@ const char *Skaflonker::name()
 const char *Skaflonker::version()
 {
 	return GAME_VERSION;
+}
+
+void Skaflonker::setState(State state)
+{
+	m_state = state;
+
+	switch(m_state)
+	{
+		case SplashState:
+			break;
+		case GameState:
+			game.resetGame();
+			break;
+	}
 }
 
 void Skaflonker::init()
@@ -53,6 +67,8 @@ void Skaflonker::init()
 	std::vector<Actions*> &actions = Actions::instance();
 	actions.push_back(actionsFighterOne);
 	actions.push_back(actionsFighterTwo);
+
+	in.keyboard().addListener(&splash);
 }
 
 void Skaflonker::load()
@@ -62,6 +78,8 @@ void Skaflonker::load()
 	}
 
 	frames.setColor(Guy::rgba(0,0,0,1));
+
+	splash.load();
 	game.load();
 }
 
@@ -72,15 +90,32 @@ void Skaflonker::unload()
 
 void Skaflonker::update(double deltaTime)
 {
-	frames.update(deltaTime);
-	game.update(deltaTime);
+	switch(m_state)
+	{
+	case SplashState:
+		splash.update(deltaTime);
+		break;
+	case GameState:
+		game.update(deltaTime);
+		break;
+	}
 
+	frames.update(deltaTime);
 	Actions::endOfFrameAll();
 }
 
 void Skaflonker::draw()
 {
-	game.draw();
+	switch(m_state)
+	{
+	case SplashState:
+		splash.draw();
+		break;
+	case GameState:
+		game.draw();
+		break;
+	}
+
 	frames.draw();
 }
 

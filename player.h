@@ -19,6 +19,7 @@ public:
 		LeftDirection,
 		RightDirection
 	};
+
 	enum VerticalDirection
 	{
 		UpDirection,

@@ -1,6 +1,8 @@
 #include "ingame.h"
 #include "box.h"
 
+#include "skaflonker.h"
+
 #include "environment.h"
 #include <set>
 #include <time.h>
@@ -28,7 +30,7 @@ constexpr double BackgroundScale{6.0};
 const math::vec2d BackgroundSizeScaled = BackgroundSize * BackgroundScale;
 constexpr std::size_t MaxBoxAmount{100};
 
-Ingame::Ingame() : player(0), player2(1), m_currentBackground(0)
+Ingame::Ingame(Skaflonker &parent) : parent(parent), player(0), player2(1), m_currentBackground(0)
 {
 	m_shadowSprite.setFileName("shadow.png");
 	m_backgroundSprite.setScale(BackgroundScale);
@@ -112,6 +114,16 @@ void Ingame::load()
 	camera.init();
 	camera.resizeScreen(ViewSize.x, ViewSize.y);
 	camera.setPos(math::vec2f(0, 600));
+}
+
+void Ingame::resetGame()
+{
+	cameraPos = math::vec2d(0,0);
+
+	player.setPosition(math::vec3d(-500, 0, 0));
+	player.setFacingDirection(Player::RightDirection);
+	player2.setPosition(math::vec3d(500, 0, 0));
+	player2.setFacingDirection(Player::LeftDirection);
 }
 
 void Ingame::draw()

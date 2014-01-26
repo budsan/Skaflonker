@@ -17,7 +17,8 @@ SOURCES += \
     ingame.cpp \
     standardsprite.cpp \
     box.cpp \
-    animatedsprite.cpp
+    animatedsprite.cpp \
+    splash.cpp
 
 HEADERS += \
     skaflonker.h \
@@ -28,7 +29,8 @@ HEADERS += \
     ingame.h \
     standardsprite.h \
     box.h \
-    animatedsprite.h
+    animatedsprite.h \
+    splash.h
 
 DESTDIR = $$PWD/
 

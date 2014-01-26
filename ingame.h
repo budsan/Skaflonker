@@ -5,11 +5,12 @@
 #include "standardsprite.h"
 
 class Box;
+class Skaflonker;
 
 class Ingame
 {
 public:
-	Ingame();
+	Ingame(Skaflonker& parent);
 
 	void   load();
 	void unload();
@@ -17,11 +18,15 @@ public:
 	void update(double deltaTime);
 	void draw();
 
+	void resetGame();
+
 private:
 	void nextBackground();
 	std::shared_ptr<Player::Library> randomLibrary() const;
 
 	Box *createRandomBox() const;
+
+	Skaflonker &parent;
 
 	Guy::Camera2D camera;
 	math::vec2d cameraPos;

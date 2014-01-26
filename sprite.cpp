@@ -91,8 +91,8 @@ void Sprite::draw()
 	float h = static_cast<float>(abs(params.h));
 	float w = static_cast<float>(abs(params.w));
 	struct { float x, y; } vertcoordsArray[4] = {
-	{0, 0},{0,-h},{w,-h},{w, 0}
-};
+		{0, 0},{0,-h},{w,-h},{w, 0}
+	};
 
 	unsigned short indices[] = { 3, 0, 1, 1, 2, 3 };
 

@@ -8,6 +8,7 @@
 #include "guyframework/graphics/tools/texthud.h"
 #include "guyframework/graphics/tools/frameshud.h"
 
+#include "splash.h"
 #include "ingame.h"
 
 
@@ -16,6 +17,14 @@ class Skaflonker : public Guy::Game, public Guy::FocusListener, public Guy::Keyb
 public:
 	Skaflonker();
 	virtual ~Skaflonker();
+
+	enum State
+	{
+		SplashState,
+		GameState
+	};
+
+	void setState(State state);
 
 protected:
 	void init();
@@ -36,6 +45,10 @@ protected:
 	void onKeyDown(wchar_t unicode, Guy::Keyboard::Key key, Guy::Keyboard::Mod mods);
 
 	Guy::FramesHUD frames;
+
+	State m_state;
+
+	Splash splash;
 	Ingame game;
 };
 

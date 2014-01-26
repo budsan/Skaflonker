@@ -28,8 +28,33 @@ void Player::update()
 
 	Actions &state = *Actions::instance()[m_playerID];
 
+	if (currentTrack() != trackID("idle"))
+	{
+		ensureTrack("idle");
+
+		if (state.isDown(ActionsFighter::Attack)) {
+			ensureTrack("attack");
+		} else if (state.isPressed(ActionsFighter::Block)) {
+			ensureTrack("defend");
+		} else if (state.isPressed(ActionsFighter::Jump)) {
+			m_velocity.y = JumpVelocity;
+			ensureTrack("Jump");
+		}
+	}
+	else if (currentTrack() != trackID("jump"))
+	{
+		if (position().y < 0.1) {
+			ensureTrack("standing");
+		}
+	}
+	else if (currentTrack() != trackID("standing"))
+	{
+
+	}
+
+	/*
 	// Uncomment the line below to make jumps more real :(
-	if (currentTrack() != trackID("attack") /*&& position().y < 0.1*/) {
+	if (currentTrack() != trackID("attack") && position().y < 0.1) {
 		if (state.isDown(ActionsFighter::Attack)) {
 			ensureTrack("attack");
 		} else if (state.isPressed(ActionsFighter::Block)) {
@@ -65,6 +90,7 @@ void Player::update()
 			}
 		}
 	}
+	*/
 
 	position() += m_velocity;
 
@@ -96,13 +122,15 @@ void Player::update()
 std::shared_ptr<Player::Library> Player::loadDirectory(const std::string &path)
 {
 	std::shared_ptr<Library> lib = std::make_shared<Library>();
-	if (!loadTrackFile(path+"/idle.json", "idle", lib)) return std::shared_ptr<Library>();
-	if (!loadTrackFile(path+"/attack.json", "attack", lib)) return std::shared_ptr<Library>();
-	if (!loadTrackFile(path+"/run.json", "run", lib)) return std::shared_ptr<Library>();
-	if (!loadTrackFile(path+"/lose.json", "lose", lib)) return std::shared_ptr<Library>();
-	if (!loadTrackFile(path+"/defend.json", "defend", lib)) return std::shared_ptr<Library>();
-	if (!loadTrackFile(path+"/throw.json", "throw", lib)) return std::shared_ptr<Library>();
-	if (!loadTrackFile(path+"/victory.json", "victory", lib)) return std::shared_ptr<Library>();
+	loadTrackFile(path+"/idle.json", "idle", lib);
+	loadTrackFile(path+"/attack.json", "attack", lib);
+	loadTrackFile(path+"/jump.json", "jump", lib);
+	loadTrackFile(path+"/standing.json", "standing", lib);
+	loadTrackFile(path+"/run.json", "run", lib);
+	loadTrackFile(path+"/lose.json", "lose", lib);
+	loadTrackFile(path+"/defend.json", "defend", lib);
+	loadTrackFile(path+"/throw.json", "throw", lib);
+	loadTrackFile(path+"/victory.json", "victory", lib);
 
 	return lib;
 }
@@ -129,16 +157,18 @@ void Player::onCollisionRight()
 
 void Player::onCollisionTop()
 {
-	m_velocity.y = 0;
+	m_velocity.z = 0;
 }
 
 void Player::onCollisionBottom()
 {
-	m_velocity.y = 0;
+	m_velocity.z = 0;
 }
 
 void Player::currentTrackFinished()
 {
-	if (currentTrack() != trackID("run") && currentTrack() != trackID("defend"))
+	if (currentTrack() != trackID("run") &&
+	    currentTrack() != trackID("defend") &&
+	    currentTrack() != trackID("standing"))
 		ensureTrack("idle");
 }
