@@ -14,7 +14,8 @@
 #include "standardsprite.h"
 
 Player::Player(std::size_t playerID)
-	: m_playerID(playerID)
+	: m_playerID(playerID),
+	  m_state(IdleState)
 {
 }
 
@@ -27,70 +28,95 @@ void Player::update()
 	const double Gravity = 3.0;
 
 	Actions &state = *Actions::instance()[m_playerID];
+	math::vec3d facingDirection;
 
-	if (currentTrack() != trackID("idle"))
+	double currentAcc    = Acceleration;
+	double currentFri    = Friction;
+	double currentMaxVel = MaxVelocity;
+	double currentGrav   = Gravity;
+
+
+	switch(m_state)
 	{
+	case IdleState:
 		ensureTrack("idle");
-
 		if (state.isDown(ActionsFighter::Attack)) {
-			ensureTrack("attack");
+			m_state = AttackState;
 		} else if (state.isPressed(ActionsFighter::Block)) {
-			ensureTrack("defend");
+			m_state = DefendState;
 		} else if (state.isPressed(ActionsFighter::Jump)) {
 			m_velocity.y = JumpVelocity;
-			ensureTrack("Jump");
+			m_state = JumpState;
 		}
-	}
-	else if (currentTrack() != trackID("jump"))
-	{
-		if (position().y < 0.1) {
-			ensureTrack("standing");
+		else if (state.isPressed(ActionsFighter::Right) ^ state.isPressed(ActionsFighter::Left) ||
+			 state.isPressed(ActionsFighter::Up   ) ^ state.isPressed(ActionsFighter::Down)) {
+			m_state = RunState;
 		}
-	}
-	else if (currentTrack() != trackID("standing"))
+		break;
+	case AttackState:
+		ensureTrack("attack");
+		break;
+	case DefendState:
+		ensureTrack("defend");
+		break;
+	case JumpState:
+		ensureTrack("jump");
+		if (position().y < 0.1 && m_velocity.y <= 0)
+			m_state = StandUpState;
+
+		break;
+	case StandUpState:
+		ensureTrack("standup");
+		break;
+	case RunState:
 	{
+		ensureTrack("run");
 
-	}
+		bool somePressed = false;
+		if (state.isPressed(ActionsFighter::Right) && !state.isPressed(ActionsFighter::Left)) {
+			setFacingDirection(RightDirection);
+			facingDirection.x = 1.0;
+			somePressed = true;
+		}
+		else if (!state.isPressed(ActionsFighter::Right) && state.isPressed(ActionsFighter::Left)) {
+			setFacingDirection(LeftDirection);
+			facingDirection.x = -1.0;
+			somePressed = true;
+		}
+		if (state.isPressed(ActionsFighter::Up) && !state.isPressed(ActionsFighter::Down)) {
+			facingDirection.z = 1.0;
+			somePressed = true;
+		}
+		else if (!state.isPressed(ActionsFighter::Up) && state.isPressed(ActionsFighter::Down)) {
+			facingDirection.z = -1.0;
+			somePressed = true;
+		}
 
-	/*
-	// Uncomment the line below to make jumps more real :(
-	if (currentTrack() != trackID("attack") && position().y < 0.1) {
+		if (!somePressed) {
+			m_state = IdleState;
+		}
+
 		if (state.isDown(ActionsFighter::Attack)) {
-			ensureTrack("attack");
+			m_state = AttackState;
 		} else if (state.isPressed(ActionsFighter::Block)) {
-			ensureTrack("defend");
+			m_state = DefendState;
 		} else if (state.isPressed(ActionsFighter::Jump)) {
+			m_velocity.x = JumpVelocity * facingDirection.x;
 			m_velocity.y = JumpVelocity;
-		} else {
-			if (!state.isPressed(ActionsFighter::Right) && !state.isPressed(ActionsFighter::Left)
-				&& !state.isPressed(ActionsFighter::Up) && !state.isPressed(ActionsFighter::Down))
-			{
-				ensureTrack("idle");
-			} else {
-				math::vec3d facingDirection;
-				if (state.isPressed(ActionsFighter::Right)) {
-					ensureTrack("run");
-					setFacingDirection(RightDirection);
-					facingDirection.x = 1.0;
-				} else if (state.isPressed(ActionsFighter::Left)) {
-					ensureTrack("run");
-					setFacingDirection(LeftDirection);
-					facingDirection.x = -1.0;
-				}
-
-				if (state.isPressed(ActionsFighter::Up)) {
-					ensureTrack("run");
-					facingDirection.z = 1.0;
-				} else if (state.isPressed(ActionsFighter::Down)) {
-					ensureTrack("run");
-					facingDirection.z = -1.0;
-				}
-
-				m_velocity += facingDirection.normalized() * Acceleration;
-			}
+			m_velocity.z = JumpVelocity * facingDirection.z;
+			m_state = JumpState;
 		}
+
+		break;
 	}
-	*/
+	default:
+		m_state = IdleState;
+		break;
+	}
+
+	if (facingDirection.module() > 0) {
+		m_velocity += facingDirection.normalized() * currentAcc;
+	}
 
 	position() += m_velocity;
 
@@ -98,22 +124,22 @@ void Player::update()
 		position().y = 0;
 
 		if (m_velocity.x > 0.0) {
-			m_velocity.x = std::max(0.0, m_velocity.x - Friction);
+			m_velocity.x = std::max(0.0, m_velocity.x - currentFri);
 		}
 		else {
-			m_velocity.x = std::min(0.0, m_velocity.x + Friction);
+			m_velocity.x = std::min(0.0, m_velocity.x + currentFri);
 		}
-		m_velocity.x = std::max(std::min(m_velocity.x, MaxVelocity), -MaxVelocity);
+		m_velocity.x = std::max(std::min(m_velocity.x, currentMaxVel), -currentMaxVel);
 
 		if (m_velocity.z > 0.0) {
-			m_velocity.z = std::max(0.0, m_velocity.z - Friction);
+			m_velocity.z = std::max(0.0, m_velocity.z - currentFri);
 		}
 		else {
-			m_velocity.z = std::min(0.0, m_velocity.z + Friction);
+			m_velocity.z = std::min(0.0, m_velocity.z + currentFri);
 		}
-		m_velocity.z = std::max(std::min(m_velocity.z, MaxVelocity), -MaxVelocity);
+		m_velocity.z = std::max(std::min(m_velocity.z, currentMaxVel), -currentMaxVel);
 	} else {
-		m_velocity.y -= Gravity;
+		m_velocity.y -= currentGrav;
 	}
 
 	AnimatedSprite::update();
@@ -125,7 +151,7 @@ std::shared_ptr<Player::Library> Player::loadDirectory(const std::string &path)
 	loadTrackFile(path+"/idle.json", "idle", lib);
 	loadTrackFile(path+"/attack.json", "attack", lib);
 	loadTrackFile(path+"/jump.json", "jump", lib);
-	loadTrackFile(path+"/standing.json", "standing", lib);
+	loadTrackFile(path+"/standup.json", "standup", lib);
 	loadTrackFile(path+"/run.json", "run", lib);
 	loadTrackFile(path+"/lose.json", "lose", lib);
 	loadTrackFile(path+"/defend.json", "defend", lib);
@@ -167,8 +193,19 @@ void Player::onCollisionBottom()
 
 void Player::currentTrackFinished()
 {
-	if (currentTrack() != trackID("run") &&
-	    currentTrack() != trackID("defend") &&
-	    currentTrack() != trackID("standing"))
-		ensureTrack("idle");
+	switch(m_state)
+	{
+	case IdleState: break;
+	case AttackState:
+		m_state = IdleState;
+		break;
+	case DefendState:
+		m_state = IdleState;
+		break;
+	case JumpState: break;
+	case StandUpState:
+		m_state = IdleState;
+		break;
+	case RunState: break;
+	}
 }
