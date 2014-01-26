@@ -8,6 +8,45 @@
                 },
                 "fileName": "sostenerazul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 62,
+                                "y": -5
+                            },
+                            "topLeft": {
+                                "x": -78,
+                                "y": -308
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 91,
+                                "y": -199
+                            },
+                            "topLeft": {
+                                "x": 61,
+                                "y": -339
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -69,
+                                "y": -204
+                            },
+                            "topLeft": {
+                                "x": -101,
+                                "y": -327
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -144,
@@ -32,6 +71,45 @@
                 },
                 "fileName": "lanzarazul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 78,
+                                "y": 0
+                            },
+                            "topLeft": {
+                                "x": -81,
+                                "y": -323
+                            }
+                        }
+                    },
+                    {
+                        "group": "damage",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 149,
+                                "y": -227
+                            },
+                            "topLeft": {
+                                "x": 74,
+                                "y": -280
+                            }
+                        }
+                    },
+                    {
+                        "group": "damage",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 22,
+                                "y": -213
+                            },
+                            "topLeft": {
+                                "x": -75,
+                                "y": -274
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -144.14943222714666,

@@ -1,7 +1,7 @@
 #include "action.h"
 #include <cstdio>
 
-Action::Action() : isDown(false), isUp(false), isPressed(false)
+Action::Action() : isDown(false), isUp(false), isPressed(false), isDoubleDown(false), lastTimePressed(-1)
 {
 
 }
@@ -16,11 +16,24 @@ void Action::actionDown()
 {
 	isDown = true;
 	isPressed = true;
+	if (lastTimePressed >= 0 && lastTimePressed < 0.25) {
+		isDoubleDown = true;
+		lastTimePressed = -1;
+	} else {
+		lastTimePressed = 0;
+	}
+}
+
+void Action::update(double deltaTime)
+{
+	if (lastTimePressed >= 0)
+		lastTimePressed += deltaTime;
 }
 
 void Action::endOfFrame()
 {
 	isDown = false;
+	isDoubleDown = false;
 	isUp = false;
 }
 
@@ -36,6 +49,13 @@ Actions::~Actions()
 std::vector<Actions*>& Actions::instance()
 {
 	return s_instance;
+}
+
+void Actions::updateAll(double deltaTime)
+{
+	for (unsigned int i = 0; i < s_instance.size(); ++i) {
+		s_instance[i]->update(deltaTime);
+	}
 }
 
 void Actions::endOfFrameAll()
@@ -58,6 +78,14 @@ bool Actions::isUp(unsigned int type) const
 bool Actions::isPressed(unsigned int type) const
 {
 	return m_actions[(unsigned int)type].isPressed;
+}
+
+void Actions::update(double deltaTime)
+{
+	for (unsigned int i = 0; i < m_actions.size(); ++i)
+	{
+		m_actions[i].update(deltaTime);
+	}
 }
 
 void Actions::endOfFrame()

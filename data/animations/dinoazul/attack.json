@@ -8,6 +8,84 @@
                 },
                 "fileName": "attack1azul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 46,
+                                "y": 0
+                            },
+                            "topLeft": {
+                                "x": -49,
+                                "y": -81
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -52,
+                                "y": -16
+                            },
+                            "topLeft": {
+                                "x": -98,
+                                "y": -49
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -71,
+                                "y": -49
+                            },
+                            "topLeft": {
+                                "x": -100,
+                                "y": -110
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 45,
+                                "y": -80
+                            },
+                            "topLeft": {
+                                "x": -50,
+                                "y": -173
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 35,
+                                "y": -177
+                            },
+                            "topLeft": {
+                                "x": -51,
+                                "y": -274
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 45,
+                                "y": -279
+                            },
+                            "topLeft": {
+                                "x": -43,
+                                "y": -322
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -101.27588573720578,
@@ -32,6 +110,84 @@
                 },
                 "fileName": "attack2azul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 44,
+                                "y": -131
+                            },
+                            "topLeft": {
+                                "x": -54,
+                                "y": -307
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 31,
+                                "y": -78
+                            },
+                            "topLeft": {
+                                "x": -54,
+                                "y": -127
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 44,
+                                "y": -1
+                            },
+                            "topLeft": {
+                                "x": -53,
+                                "y": -74
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -74,
+                                "y": -52
+                            },
+                            "topLeft": {
+                                "x": -98,
+                                "y": -104
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -51,
+                                "y": -23
+                            },
+                            "topLeft": {
+                                "x": -100,
+                                "y": -53
+                            }
+                        }
+                    },
+                    {
+                        "group": "damage",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 160,
+                                "y": -171
+                            },
+                            "topLeft": {
+                                "x": 52,
+                                "y": -310
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -101.02032623143796,

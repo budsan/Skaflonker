@@ -8,6 +8,45 @@
                 },
                 "fileName": "ganchoverde1azul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 16,
+                                "y": -208
+                            },
+                            "topLeft": {
+                                "x": -102,
+                                "y": -335
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 32,
+                                "y": -80
+                            },
+                            "topLeft": {
+                                "x": -103,
+                                "y": -208
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 22,
+                                "y": 1
+                            },
+                            "topLeft": {
+                                "x": -67,
+                                "y": -77
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -121.24096116134795,
@@ -32,6 +71,58 @@
                 },
                 "fileName": "ganchoverde2azul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 14,
+                                "y": -7
+                            },
+                            "topLeft": {
+                                "x": -89,
+                                "y": -307
+                            }
+                        }
+                    },
+                    {
+                        "group": "damage",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 126,
+                                "y": -148
+                            },
+                            "topLeft": {
+                                "x": 66,
+                                "y": -234
+                            }
+                        }
+                    },
+                    {
+                        "group": "damage",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 67,
+                                "y": -79
+                            },
+                            "topLeft": {
+                                "x": 15,
+                                "y": -181
+                            }
+                        }
+                    },
+                    {
+                        "group": "damage",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 131,
+                                "y": -213
+                            },
+                            "topLeft": {
+                                "x": 93,
+                                "y": -241
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -114.05222699481247,
@@ -56,6 +147,45 @@
                 },
                 "fileName": "ganchoverde1azul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 17,
+                                "y": -3
+                            },
+                            "topLeft": {
+                                "x": -62,
+                                "y": -78
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 44,
+                                "y": -79
+                            },
+                            "topLeft": {
+                                "x": -87,
+                                "y": -214
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 8,
+                                "y": -212
+                            },
+                            "topLeft": {
+                                "x": -99,
+                                "y": -316
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -121.82530318405004,

@@ -101,6 +101,7 @@ void Skaflonker::update(double deltaTime)
 	}
 
 	frames.update(deltaTime);
+	Actions::updateAll(deltaTime);
 	Actions::endOfFrameAll();
 }
 

@@ -8,6 +8,19 @@
                 },
                 "fileName": "sostenerazul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 70,
+                                "y": 3
+                            },
+                            "topLeft": {
+                                "x": -82,
+                                "y": -308
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -141,
@@ -32,6 +45,19 @@
                 },
                 "fileName": "jumpazul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 82,
+                                "y": -84
+                            },
+                            "topLeft": {
+                                "x": -77,
+                                "y": -341
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -141.80373548154492,
@@ -56,6 +82,19 @@
                 },
                 "fileName": "jumpazul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 118,
+                                "y": -33
+                            },
+                            "topLeft": {
+                                "x": -34,
+                                "y": -296
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -104.94037499999996,
@@ -80,6 +119,19 @@
                 },
                 "fileName": "loseazul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 128,
+                                "y": -2
+                            },
+                            "topLeft": {
+                                "x": -36,
+                                "y": -282
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -95.993852443082289,

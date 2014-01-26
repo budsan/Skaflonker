@@ -38,6 +38,8 @@ void Player::update()
 	double currentMaxVel = MaxVelocity;
 	double currentGrav   = Gravity;
 
+
+
 	switch(m_state)
 	{
 	case IdleState:

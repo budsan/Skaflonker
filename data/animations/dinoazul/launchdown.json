@@ -6,44 +6,18 @@
             "data": {
                 "customProperties": {
                 },
-                "fileName": "defendazul.png",
+                "fileName": "superhurtdownazul.png",
                 "hitBoxes": [
                     {
                         "group": "body",
                         "rect": {
                             "bottomRight": {
-                                "x": 60,
-                                "y": 3
-                            },
-                            "topLeft": {
-                                "x": -41,
-                                "y": -271
-                            }
-                        }
-                    },
-                    {
-                        "group": "body",
-                        "rect": {
-                            "bottomRight": {
-                                "x": -38,
-                                "y": 9
-                            },
-                            "topLeft": {
-                                "x": -108,
-                                "y": -40
-                            }
-                        }
-                    },
-                    {
-                        "group": "body",
-                        "rect": {
-                            "bottomRight": {
-                                "x": -45,
+                                "x": 57,
                                 "y": -116
                             },
                             "topLeft": {
-                                "x": -93,
-                                "y": -246
+                                "x": -89,
+                                "y": -291
                             }
                         }
                     },
@@ -51,23 +25,36 @@
                         "group": "body",
                         "rect": {
                             "bottomRight": {
-                                "x": -44,
-                                "y": -47
+                                "x": 117,
+                                "y": -212
                             },
                             "topLeft": {
-                                "x": -66,
-                                "y": -118
+                                "x": -41,
+                                "y": -294
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 83,
+                                "y": -70
+                            },
+                            "topLeft": {
+                                "x": 44,
+                                "y": -145
                             }
                         }
                     }
                 ],
                 "offset": {
-                    "x": -172.97671812499993,
-                    "y": -297.68086374999984
+                    "x": -123,
+                    "y": -355
                 },
                 "rect": {
                     "bottomRight": {
-                        "x": 256,
+                        "x": 256.5,
                         "y": 355
                     },
                     "topLeft": {

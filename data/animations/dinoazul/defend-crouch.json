@@ -8,6 +8,19 @@
                 },
                 "fileName": "down.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 73,
+                                "y": 1
+                            },
+                            "topLeft": {
+                                "x": -66,
+                                "y": -134
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -138,

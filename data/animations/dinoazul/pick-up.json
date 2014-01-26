@@ -8,6 +8,32 @@
                 },
                 "fileName": "pillarazul.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 74,
+                                "y": -4
+                            },
+                            "topLeft": {
+                                "x": -49,
+                                "y": -231
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -53,
+                                "y": -44
+                            },
+                            "topLeft": {
+                                "x": -94,
+                                "y": -213
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -162,
