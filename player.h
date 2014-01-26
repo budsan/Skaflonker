@@ -42,6 +42,9 @@ public:
 
 	void dealDamage(int damage);
 
+	void onDamageTaken();
+	void onDamageGiven();
+
 private:
 	enum {
 		IdleState,
