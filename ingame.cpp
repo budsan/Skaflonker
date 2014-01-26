@@ -8,11 +8,12 @@
 const std::vector<std::string> Backgrounds{/*"background-1.png",*/ "background-2.png", "background-3.png"};
 const std::vector<std::string> PlayerLibraries{"data/animations/dinoazul", "data/animations/dinorojo", "data/animations/dinoverde",
 											  "data/animations/huevoazul", "data/animations/huevovermell", "data/animations/huevoverd"};
+const double BackgroundScale{6.0};
 
 Ingame::Ingame() : player(0), player2(1), m_currentBackground(0)
 {
 	m_shadowSprite.setFileName("shadow.png");
-	m_backgroundSprite.setScale(6.0);
+	m_backgroundSprite.setScale(BackgroundScale);
 	nextBackground();
 	srand(time(nullptr));
 }
@@ -74,7 +75,14 @@ void Ingame::load()
 	player2.setLibrary(randomLibrary());
 	player2.playTrack("idle");
 
-	m_boxes.push_back(new Box);
+	for(int i = 0; i < 100; ++i) {
+		double width = 1600.0 * BackgroundScale;
+		double height = 900.0 * BackgroundScale;
+		double randomX = -(width / 2.0) + std::fmod(std::rand(), width);
+		double randomY = -(height / 2.0) + std::fmod(std::rand(), height);
+		double randomZ = std::fmod(std::rand(), 2000);
+		m_boxes.push_back(new Box(math::vec3d(randomX, randomZ, randomY)));
+	}
 
 	camera.init();
 	camera.resizeScreen(1920, 1080);

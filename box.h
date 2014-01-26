@@ -2,11 +2,12 @@
 #define BOX_H
 
 #include "animatedsprite.h"
+#include <math/algebra3.h>
 
 class Box : public AnimatedSprite
 {
 public:
-	Box();
+	Box(const math::vec3d &position = math::vec3d());
 };
 
 #endif // BOX_H

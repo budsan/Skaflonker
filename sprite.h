@@ -24,6 +24,7 @@ public:
 	double rotation()  { return m_rotate; }
 
 	const math::vec3d &position() const { return m_pos;}
+	void setPosition(const math::vec3d &position) {m_pos = position;}
 	math::vec3d &position() { return m_pos;}
 private:
 	static double s_globalUnitsPerPixel;
