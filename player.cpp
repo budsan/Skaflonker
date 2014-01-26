@@ -93,6 +93,29 @@ void Player::update()
 			m_state = StandUpState;
 
 		break;
+	case HurtState:
+		ensureTrack("hurt");
+		break;
+	case LaunchedInitState:
+	{
+		m_state = LaunchedState;
+		facingDirection.x = scale().x;
+		m_velocity.x = JumpVelocity * scale().x * -0.5;
+		m_velocity.y = JumpVelocity;
+		m_velocity.z = 0;
+	}
+	case LaunchedState:
+		currentAcc = currentFri = 0;
+		currentMaxVel = JumpVelocity / 2;
+
+		if (m_velocity.y > 0)
+			ensureTrack("launchup");
+		else
+			ensureTrack("launchdown");
+
+		if (position().y < 0.1 && m_velocity.y <= 0)
+			m_state = StandUpState;
+		break;
 	case StandUpState:
 		ensureTrack("standup");
 		break;
@@ -180,7 +203,11 @@ std::shared_ptr<Player::Library> Player::loadDirectory(const std::string &path)
 	std::shared_ptr<Library> lib = std::make_shared<Library>();
 	loadTrackFile(path+"/idle.json", "idle", lib);
 	loadTrackFile(path+"/attack.json", "attack", lib);
+	loadTrackFile(path+"/attack-launcher.json", "launcher", lib);
 	loadTrackFile(path+"/jump.json", "jump", lib);
+	loadTrackFile(path+"/hurt.json", "hurt", lib);
+	loadTrackFile(path+"/launchup.json", "launchup", lib);
+	loadTrackFile(path+"/launchdown.json", "launchdown", lib);
 	loadTrackFile(path+"/standup.json", "standup", lib);
 	loadTrackFile(path+"/run.json", "run", lib);
 	loadTrackFile(path+"/lose.json", "lose", lib);
@@ -201,22 +228,31 @@ void Player::dealDamage(int damage)
 
 void Player::onDamageTaken(const Player &from)
 {
-	hitFramesRemaining = 10;
-
 	switch(m_state)
 	{
 	case DefendState:
+		hitFramesRemaining = 5;
 		break;
-	case JumpState:
+	case LaunchedState:
+		m_state = LaunchedInitState;
+		ensureTrack("launchup");
+		hitFramesRemaining = 5;
 		break;
-	case AirAttackState:
-		m_state = JumpState;
-		break;
-	case StandUpState:
-		m_state = IdleState;
-		break;
-	case RunState:
-		break;
+	default:
+		switch(from.m_state)
+		{
+			case AttackState:
+				m_state = HurtState;
+				ensureTrack("hurt");
+				hitFramesRemaining = 10;
+				break;
+			case LauncherState:
+			case AirAttackState:
+				m_state = LaunchedInitState;
+				ensureTrack("launchup");
+				hitFramesRemaining = 5;
+				break;
+		}
 	}
 }
 
@@ -280,6 +316,12 @@ void Player::currentTrackFinished()
 			m_state = IdleState;
 		break;
 	case JumpState:
+		break;
+	case HurtState:
+		if (state.isPressed(ActionsFighter::Block))
+			m_state = DefendState;
+		else
+			m_state = IdleState;
 		break;
 	case AirAttackState:
 		m_state = JumpState;

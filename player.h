@@ -53,7 +53,11 @@ private:
 		JumpState,
 		AirAttackState,
 		StandUpState,
-		RunState
+		RunState,
+		HurtState,
+		LauncherState,
+		LaunchedInitState,
+		LaunchedState
 	};
 
 	int m_state;
