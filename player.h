@@ -43,8 +43,18 @@ public:
 	void dealDamage(int damage);
 
 private:
-	std::size_t m_playerID;
+	enum {
+		IdleState,
+		AttackState,
+		DefendState,
+		JumpState,
+		StandUpState,
+		RunState
+	};
 
+	int m_state;
+
+	std::size_t m_playerID;
 	math::vec3d m_velocity;
 
 	//std::size_t m_idleTrack;
