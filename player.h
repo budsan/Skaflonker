@@ -40,12 +40,16 @@ public:
 
 	static std::shared_ptr<Player::Library> loadDirectory(const std::string &path);
 
+	void dealDamage(int damage);
+
 private:
 	std::size_t m_playerID;
 
 	math::vec3d m_velocity;
 
 	//std::size_t m_idleTrack;
+
+	int m_health;
 
 	void nextFrame();
 	void nextKeyframeTime();
