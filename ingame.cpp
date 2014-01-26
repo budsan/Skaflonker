@@ -9,6 +9,7 @@ const std::vector<std::string> Backgrounds{/*"background-1.png",*/ "background-2
 const std::vector<std::string> PlayerLibraries{"data/animations/dinoazul", "data/animations/dinorojo", "data/animations/dinoverde",
 											  "data/animations/huevoazul", "data/animations/huevovermell", "data/animations/huevoverd"};
 const double BackgroundScale{6.0};
+const std::size_t MaxBoxAmount{100};
 
 Ingame::Ingame() : player(0), player2(1), m_currentBackground(0)
 {
@@ -55,8 +56,24 @@ void Ingame::update(double deltaTime)
 		//STAPH
 	}
 
-	for(Box *box : m_boxes) {
+	for (Box *box : m_boxes) {
 		box->update();
+	}
+
+	auto it = m_boxes.begin();
+	while (it != m_boxes.end()) {
+		Box *box = *it;
+		if (box->position().y <= 0.1) {
+			it = m_boxes.erase(it);
+			delete box;
+		}
+		else {
+			++it;
+		}
+	}
+
+	for (int i = m_boxes.size(); i < MaxBoxAmount; ++i) {
+		m_boxes.push_back(createRandomBox());
 	}
 
 	if (m_accumulatedTime > 5.0) {
@@ -75,13 +92,8 @@ void Ingame::load()
 	player2.setLibrary(randomLibrary());
 	player2.playTrack("idle");
 
-	for(int i = 0; i < 100; ++i) {
-		double width = 1600.0 * BackgroundScale;
-		double height = 900.0 * BackgroundScale;
-		double randomX = -(width / 2.0) + std::fmod(std::rand(), width);
-		double randomY = -(height / 2.0) + std::fmod(std::rand(), height);
-		double randomZ = std::fmod(std::rand(), 2000);
-		m_boxes.push_back(new Box(math::vec3d(randomX, randomZ, randomY)));
+	for(int i = 0; i < MaxBoxAmount; ++i) {
+		m_boxes.push_back(createRandomBox());
 	}
 
 	camera.init();
@@ -177,4 +189,14 @@ void Ingame::nextBackground()
 std::shared_ptr<Player::Library> Ingame::randomLibrary() const
 {
 	return Player::loadDirectory(PlayerLibraries.at(std::rand() % PlayerLibraries.size()));
+}
+
+Box *Ingame::createRandomBox() const
+{
+	double width = 1600.0 * BackgroundScale;
+	double height = 900.0 * BackgroundScale;
+	double randomX = -(width / 2.0) + std::fmod(std::rand(), width);
+	double randomY = -(height / 2.0) + std::fmod(std::rand(), height);
+	double randomZ = std::fmod(std::rand(), 2000);
+	return new Box(math::vec3d(randomX, randomZ, randomY));
 }

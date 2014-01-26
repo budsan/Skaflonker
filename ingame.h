@@ -21,6 +21,8 @@ private:
 	void nextBackground();
 	std::shared_ptr<Player::Library> randomLibrary() const;
 
+	Box *createRandomBox() const;
+
 	Guy::Camera2D camera;
 	math::vec2d cameraPos;
 	float zoom;

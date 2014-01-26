@@ -10,3 +10,12 @@ Box::Box(const math::vec3d &position)
 	setScale(1.5);
 	setPosition(position);
 }
+
+void Box::update()
+{
+	AnimatedSprite::update();
+
+	if (position().y > 0.1) {
+		position().y -= 10.0;
+	}
+}
