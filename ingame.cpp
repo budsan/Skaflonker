@@ -101,11 +101,16 @@ void Ingame::load()
 		PlayerLibraries.push_back(Player::loadDirectory(PlayerLibrariesPath[i]));
 	}
 
+	const double PlayerSeparation = 1200.0;
 	player.setLibrary(PlayerLibraries[0]);
 	player.playTrack("idle");
+	player2.setFacingDirection(Player::RightDirection);
+	player.setPosition(math::vec3d(-PlayerSeparation, 2000.0, 0.0));
 
 	player2.setLibrary(PlayerLibraries[3]);
 	player2.playTrack("idle");
+	player2.setFacingDirection(Player::LeftDirection);
+	player2.setPosition(math::vec3d(PlayerSeparation, 2000.0, 0.0));
 
 	for(int i = 0; i < MaxBoxAmount; ++i) {
 		m_boxes.push_back(createRandomBox());
