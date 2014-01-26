@@ -4,6 +4,8 @@
 #include "environment.h"
 #include <set>
 #include <time.h>
+#include <algorithm>
+#include "sprite.h"
 
 const std::vector<std::string> Backgrounds {
 //	"background-1.png",
@@ -163,8 +165,10 @@ void Ingame::draw()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(camera.viewMatrix().v);
 
+	// Draw background
 	m_backgroundSprite.draw();
 
+	// Draw shadows
 	for(Box *box : m_boxes) {
 		m_shadowSprite.setPosition(box->floorPosition());
 		m_shadowSprite.draw();
@@ -176,19 +180,20 @@ void Ingame::draw()
 	m_shadowSprite.setPosition(player2.floorPosition());
 	m_shadowSprite.draw();
 
+	// Draw ordering by Z
+	std::vector<Sprite *> sprites;
 	for(Box *box : m_boxes) {
-		box->draw();
+		sprites.push_back(box);
 	}
+	sprites.push_back(&player);
+	sprites.push_back(&player2);
 
-	if (player.position().z > player2.position().z )
-	{
-		player.draw();
-		player2.draw();
-	}
-	else
-	{
-		player2.draw();
-		player.draw();
+	std::sort(sprites.begin(), sprites.end(), [](Sprite *a, Sprite *b) {
+		return a->position().z > b->position().z;
+	});
+
+	for(Sprite *sprite : sprites) {
+		sprite->draw();
 	}
 }
 
