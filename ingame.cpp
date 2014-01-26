@@ -6,6 +6,8 @@
 #include "environment.h"
 #include <set>
 #include <time.h>
+#include <algorithm>
+#include "sprite.h"
 
 const std::vector<std::string> Backgrounds {
 //	"background-1.png",
@@ -28,7 +30,7 @@ const math::vec2d ViewSize{1920, 1080};
 const math::vec2d BackgroundSize{1600, 900};
 constexpr double BackgroundScale{6.0};
 const math::vec2d BackgroundSizeScaled = BackgroundSize * BackgroundScale;
-constexpr std::size_t MaxBoxAmount{100};
+constexpr std::size_t MaxBoxAmount{10};
 
 Ingame::Ingame(Skaflonker &parent) : parent(parent), player(0), player2(1), m_currentBackground(0)
 {
@@ -101,11 +103,16 @@ void Ingame::load()
 		PlayerLibraries.push_back(Player::loadDirectory(PlayerLibrariesPath[i]));
 	}
 
+	const double PlayerSeparation = 1200.0;
 	player.setLibrary(PlayerLibraries[0]);
 	player.playTrack("idle");
+	player2.setFacingDirection(Player::RightDirection);
+	player.setPosition(math::vec3d(-PlayerSeparation, 2000.0, 0.0));
 
 	player2.setLibrary(PlayerLibraries[3]);
 	player2.playTrack("idle");
+	player2.setFacingDirection(Player::LeftDirection);
+	player2.setPosition(math::vec3d(PlayerSeparation, 2000.0, 0.0));
 
 	for(int i = 0; i < MaxBoxAmount; ++i) {
 		m_boxes.push_back(createRandomBox());
@@ -175,8 +182,10 @@ void Ingame::draw()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(camera.viewMatrix().v);
 
+	// Draw background
 	m_backgroundSprite.draw();
 
+	// Draw shadows
 	for(Box *box : m_boxes) {
 		m_shadowSprite.setPosition(box->floorPosition());
 		m_shadowSprite.draw();
@@ -188,19 +197,20 @@ void Ingame::draw()
 	m_shadowSprite.setPosition(player2.floorPosition());
 	m_shadowSprite.draw();
 
+	// Draw ordering by Z
+	std::vector<Sprite *> sprites;
 	for(Box *box : m_boxes) {
-		box->draw();
+		sprites.push_back(box);
 	}
+	sprites.push_back(&player);
+	sprites.push_back(&player2);
 
-	if (player.position().z > player2.position().z )
-	{
-		player.draw();
-		player2.draw();
-	}
-	else
-	{
-		player2.draw();
-		player.draw();
+	std::sort(sprites.begin(), sprites.end(), [](Sprite *a, Sprite *b) {
+		return a->position().z > b->position().z;
+	});
+
+	for(Sprite *sprite : sprites) {
+		sprite->draw();
 	}
 }
 
