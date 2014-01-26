@@ -5,11 +5,28 @@
 #include <set>
 #include <time.h>
 
-const std::vector<std::string> Backgrounds{/*"background-1.png",*/ "background-2.png", "background-3.png"};
-const std::vector<std::string> PlayerLibraries{"data/animations/dinoazul", "data/animations/dinorojo", "data/animations/dinoverde",
-											  "data/animations/huevoazul", "data/animations/huevovermell", "data/animations/huevoverd"};
-const double BackgroundScale{6.0};
-const std::size_t MaxBoxAmount{100};
+const std::vector<std::string> Backgrounds {
+//	"background-1.png",
+	"background-2.png",
+	"background-3.png"
+};
+
+const std::vector<std::string> PlayerLibrariesPath {
+	"data/animations/dinoazul",
+	"data/animations/dinorojo",
+	"data/animations/dinoverde",
+	"data/animations/huevoazul",
+	"data/animations/huevovermell",
+	"data/animations/huevoverd"
+};
+
+std::vector<std::shared_ptr<Player::Library>> PlayerLibraries;
+
+const math::vec2d ViewSize{1920, 1080};
+const math::vec2d BackgroundSize{1600, 900};
+constexpr double BackgroundScale{6.0};
+const math::vec2d BackgroundSizeScaled = BackgroundSize * BackgroundScale;
+constexpr std::size_t MaxBoxAmount{100};
 
 Ingame::Ingame() : player(0), player2(1), m_currentBackground(0)
 {
@@ -18,14 +35,15 @@ Ingame::Ingame() : player(0), player2(1), m_currentBackground(0)
 	nextBackground();
 	srand(time(nullptr));
 }
+
 bool clampWorld(math::vec3d& pos)
 {
 	bool clamped = false;
-	if (pos.x < -4500) {
-		pos.x = -4500;
+	if (pos.x < -4600) {
+		pos.x = -4600;
 		clamped = true;
-	} else if (pos.x > 4500) {
-		pos.x = 4500;
+	} else if (pos.x > 4600) {
+		pos.x = 4600;
 		clamped = true;
 	}
 
@@ -79,17 +97,21 @@ void Ingame::update(double deltaTime)
 	if (m_accumulatedTime > 5.0) {
 		m_accumulatedTime = 0;
 		nextBackground();
-		player.setLibrary(randomLibrary());
-		player2.setLibrary(randomLibrary());
+		//player.setLibrary(randomLibrary());
+		//player2.setLibrary(randomLibrary());
 	}
 }
 
 void Ingame::load()
 {
-	player.setLibrary(randomLibrary());
+	for (std::size_t i = 0; i < PlayerLibrariesPath.size(); ++i) {
+		PlayerLibraries.push_back(Player::loadDirectory(PlayerLibrariesPath[i]));
+	}
+
+	player.setLibrary(PlayerLibraries[0]);
 	player.playTrack("idle");
 
-	player2.setLibrary(randomLibrary());
+	player2.setLibrary(PlayerLibraries[3]);
 	player2.playTrack("idle");
 
 	for(int i = 0; i < MaxBoxAmount; ++i) {
@@ -97,7 +119,7 @@ void Ingame::load()
 	}
 
 	camera.init();
-	camera.resizeScreen(1920, 1080);
+	camera.resizeScreen(ViewSize.x, ViewSize.y);
 	camera.setPos(math::vec2f(0, 600));
 }
 
@@ -112,38 +134,37 @@ void Ingame::draw()
 	math::vec2d p1ProjPos = player.projectedPosition();
 	math::vec2d p2ProjPos = player2.projectedPosition();
 
-	double dist = (p2ProjPos - p1ProjPos).module();
+	double dist = (p2ProjPos - p1ProjPos).module() * 0.66;
 	math::vec2d cent = (p1ProjPos + p2ProjPos)/2;
 
 	cameraPos = cameraPos * 0.9 + cent * 0.1;
 
-	if (dist < 1200) dist = 1200;
-	float currentZoom = 900/dist;
+	if (dist < ViewSize.y) dist = ViewSize.y;
+	float currentZoom = (ViewSize.y * 0.75f)/dist;
 	zoom = zoom * 0.75 + currentZoom * 0.25;
 
-	if (zoom < (1920.0f/9600.0f) )
-		zoom = (1920.0f/9600.0f);
+	if (zoom < (ViewSize.x/BackgroundSizeScaled.x) )
+		zoom = (ViewSize.x/BackgroundSizeScaled.x);
 
 	camera.setZoom(zoom);
 
-	float zoominv = 1.0f / zoom;
-	float zoomw = zoominv * 1920.0f * 0.5f;
-	float zoomh = zoominv * 1080.0f * 0.5f;
-	math::vec2d realCameraPos = cameraPos + math::vec2d(0, 200);
+	double zoominv = 1.0 / zoom;
+	math::vec2d rad{zoominv * ViewSize.x * 0.5f, zoominv * ViewSize.y * 0.5f};
+	math::vec2d finalCamPos = cameraPos + math::vec2d(0, 200);
 
-	if ((realCameraPos.x + zoomw) > 4800) {
-		realCameraPos.x = 4800 - zoomw;
-	} else if ((realCameraPos.x - zoomw) < -4800) {
-		realCameraPos.x = zoomw - 4800;
+	if ((finalCamPos.x + rad.x) > (BackgroundSizeScaled.x * 0.5)) {
+		finalCamPos.x = (BackgroundSizeScaled.x * 0.5) - rad.x;
+	} else if ((finalCamPos.x - rad.x) < -(BackgroundSizeScaled.x * 0.5)) {
+		finalCamPos.x = rad.x - (BackgroundSizeScaled.x * 0.5);
 	}
 
-	if ((realCameraPos.y + zoomh) > 2700) {
-		realCameraPos.y = 2700 - zoomh;
-	} else if ((realCameraPos.y - zoomh) < -2700) {
-		realCameraPos.y = zoomh - 2700;
+	if ((finalCamPos.y + rad.y) > (BackgroundSizeScaled.y * 0.5)) {
+		finalCamPos.y = (BackgroundSizeScaled.y * 0.5) - rad.y;
+	} else if ((finalCamPos.y - rad.y) < -(BackgroundSizeScaled.y * 0.5)) {
+		finalCamPos.y = rad.y - (BackgroundSizeScaled.y * 0.5);
 	}
 
-	camera.setPos(realCameraPos);
+	camera.setPos(finalCamPos);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(camera.projectionMatrix().v);
@@ -188,7 +209,7 @@ void Ingame::nextBackground()
 
 std::shared_ptr<Player::Library> Ingame::randomLibrary() const
 {
-	return Player::loadDirectory(PlayerLibraries.at(std::rand() % PlayerLibraries.size()));
+	return PlayerLibraries.at(std::rand() % PlayerLibraries.size());
 }
 
 Box *Ingame::createRandomBox() const

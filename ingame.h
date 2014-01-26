@@ -25,7 +25,7 @@ private:
 
 	Guy::Camera2D camera;
 	math::vec2d cameraPos;
-	float zoom;
+	double zoom;
 
 	Player player;
 	Player player2;
