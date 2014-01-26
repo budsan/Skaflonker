@@ -1,0 +1,30 @@
+{
+    "fps": 60,
+    "frameCount": 15,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "jumpazul.png",
+                "hitBoxes": [
+                ],
+                "offset": {
+                    "x": -174,
+                    "y": -356
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 356
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        }
+    ]
+}
