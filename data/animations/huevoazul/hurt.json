@@ -6,25 +6,38 @@
             "data": {
                 "customProperties": {
                 },
-                "fileName": "huevoprotegirseblau.png",
+                "fileName": "huevohurtblau.png",
                 "hitBoxes": [
                     {
                         "group": "body",
                         "rect": {
                             "bottomRight": {
-                                "x": 22,
-                                "y": 2
+                                "x": 42,
+                                "y": -2
                             },
                             "topLeft": {
-                                "x": -88,
-                                "y": -266
+                                "x": -57,
+                                "y": -165
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 26,
+                                "y": -164
+                            },
+                            "topLeft": {
+                                "x": -101,
+                                "y": -270
                             }
                         }
                     }
                 ],
                 "offset": {
-                    "x": -165.40000000000003,
-                    "y": -315.84999999999997
+                    "x": -140,
+                    "y": -330
                 },
                 "rect": {
                     "bottomRight": {

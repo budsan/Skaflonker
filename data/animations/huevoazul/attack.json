@@ -8,6 +8,32 @@
                 },
                 "fileName": "huevogancho2blau.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 64,
+                                "y": -6
+                            },
+                            "topLeft": {
+                                "x": -50,
+                                "y": -140
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 76,
+                                "y": -147
+                            },
+                            "topLeft": {
+                                "x": -12,
+                                "y": -279
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -104,
@@ -32,6 +58,45 @@
                 },
                 "fileName": "huevogancho3blau.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 41,
+                                "y": 3
+                            },
+                            "topLeft": {
+                                "x": -53,
+                                "y": -145
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 79,
+                                "y": -154
+                            },
+                            "topLeft": {
+                                "x": -4,
+                                "y": -283
+                            }
+                        }
+                    },
+                    {
+                        "group": "damage",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 151,
+                                "y": -164
+                            },
+                            "topLeft": {
+                                "x": 62,
+                                "y": -241
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -104.27068961635378,

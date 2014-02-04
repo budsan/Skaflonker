@@ -1,0 +1,69 @@
+{
+    "fps": 60,
+    "frameCount": 15,
+    "keyFrames": [
+        {
+            "data": {
+                "customProperties": {
+                },
+                "fileName": "huevovolarupblau.png",
+                "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 28,
+                                "y": -5
+                            },
+                            "topLeft": {
+                                "x": -60,
+                                "y": -125
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 9,
+                                "y": -127
+                            },
+                            "topLeft": {
+                                "x": -106,
+                                "y": -169
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -43,
+                                "y": -172
+                            },
+                            "topLeft": {
+                                "x": -148,
+                                "y": -253
+                            }
+                        }
+                    }
+                ],
+                "offset": {
+                    "x": -187,
+                    "y": -321
+                },
+                "rect": {
+                    "bottomRight": {
+                        "x": 256,
+                        "y": 355
+                    },
+                    "topLeft": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
+            "frame": 0
+        }
+    ]
+}

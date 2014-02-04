@@ -8,6 +8,58 @@
                 },
                 "fileName": "standhuevoblau.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 43,
+                                "y": 2
+                            },
+                            "topLeft": {
+                                "x": -46,
+                                "y": -225
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 44,
+                                "y": -227
+                            },
+                            "topLeft": {
+                                "x": -40,
+                                "y": -327
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -49,
+                                "y": -124
+                            },
+                            "topLeft": {
+                                "x": -78,
+                                "y": -197
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 79,
+                                "y": -125
+                            },
+                            "topLeft": {
+                                "x": 39,
+                                "y": -198
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -134.54999999999998,
@@ -32,6 +84,45 @@
                 },
                 "fileName": "standhuevoblau2.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 39,
+                                "y": -3
+                            },
+                            "topLeft": {
+                                "x": -40,
+                                "y": -308
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": -43,
+                                "y": -112
+                            },
+                            "topLeft": {
+                                "x": -83,
+                                "y": -203
+                            }
+                        }
+                    },
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 86,
+                                "y": -111
+                            },
+                            "topLeft": {
+                                "x": 40,
+                                "y": -201
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -134.5564935088139,

@@ -8,6 +8,19 @@
                 },
                 "fileName": "huevoatac1blau.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 42,
+                                "y": -7
+                            },
+                            "topLeft": {
+                                "x": -90,
+                                "y": -260
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -133,
@@ -32,6 +45,32 @@
                 },
                 "fileName": "huevoatac2blau.png",
                 "hitBoxes": [
+                    {
+                        "group": "body",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 0,
+                                "y": -6
+                            },
+                            "topLeft": {
+                                "x": -124,
+                                "y": -259
+                            }
+                        }
+                    },
+                    {
+                        "group": "damage",
+                        "rect": {
+                            "bottomRight": {
+                                "x": 72,
+                                "y": -82
+                            },
+                            "topLeft": {
+                                "x": -29,
+                                "y": -192
+                            }
+                        }
+                    }
                 ],
                 "offset": {
                     "x": -166,

@@ -6,25 +6,25 @@
             "data": {
                 "customProperties": {
                 },
-                "fileName": "huevoprotegirseblau.png",
+                "fileName": "huevojumpblau.png",
                 "hitBoxes": [
                     {
                         "group": "body",
                         "rect": {
                             "bottomRight": {
-                                "x": 22,
-                                "y": 2
+                                "x": 56,
+                                "y": -51
                             },
                             "topLeft": {
-                                "x": -88,
-                                "y": -266
+                                "x": -73,
+                                "y": -327
                             }
                         }
                     }
                 ],
                 "offset": {
-                    "x": -165.40000000000003,
-                    "y": -315.84999999999997
+                    "x": -154,
+                    "y": -355
                 },
                 "rect": {
                     "bottomRight": {

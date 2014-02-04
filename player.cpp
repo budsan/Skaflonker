@@ -57,6 +57,8 @@ void Player::update()
 		{
 			if (state.isDown(ActionsFighter::Attack)) {
 				m_state = AttackState;
+				facingDirection.x = scale().x;
+				m_velocity.x = 15 * scale().x * 0.5;
 			} else if (state.isPressed(ActionsFighter::Block)) {
 				m_state = DefendState;
 			} else if (state.isPressed(ActionsFighter::Jump)) {
